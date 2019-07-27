@@ -1,5 +1,18 @@
 import React from 'react';
+import {useAuthActions} from '../store/auth/useAuthActions';
+import {ActionsProvider} from '../contexts/ActionsContext';
+import {Switch, Route} from 'react-router-dom';
 
-const App = () => <h1>Party Planner</h1>;
+const App = () => {
+  const authActions = useAuthActions();
+
+  return (
+      <ActionsProvider value={{authActions}}>
+        <Switch>
+          <Route path='/' render={() => <h1>Hello World</h1>}/>
+        </Switch>
+      </ActionsProvider>
+  );
+};
 
 export default App;
