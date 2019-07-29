@@ -1,16 +1,32 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const CoolForm = styled.form`
+  text-align: center;
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const CoolButton = styled.button`
+  font-weight: bold;
+  margin: 20px;
+  padding: 5px 20px;
+  border-radius: 6px;
+`;
+
 
 function Login(props) {
   const [user, setUser] = useState({ username: "", password: ""});
   const [isRegister, setIsRegister] = useState(false);
 
-  const handleUserChange = event => {
-    setUser({ ...user, username: event.target.value });
+  const handleChange = event => {
+    console.log(user, "userbefore");
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
-
-  const handlePassChange = event => {
-    setUser({ ...user, password: event.target.value});
-  }
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -20,15 +36,16 @@ function Login(props) {
 
   return (
     <div className="Login">
-      {console.log(user)}
+      {console.log(user, "userafter")}
       <h1>{isRegister ? 'Register' : 'Login'}</h1>
-      <form onSubmit={event => handleSubmit(event)}>
+      <CoolForm onSubmit={event => handleSubmit(event)}>
         <label>
          Username:
           <input
             type="text"
             name="username"
-            onChange={event => handleUserChange(event)}
+            value={user.username}
+            onChange={event => handleChange(event)}
           />
           </label>
         <label>
@@ -36,11 +53,12 @@ function Login(props) {
           <input
             type="text"
             name="password"
-            onChange={event => handlePassChange(event)}
+            value={user.password}
+            onChange={event => handleChange(event)}
           />
         </label>
-        <button>{isRegister ? 'Register' : 'Login'}</button>
-      </form>
+        <CoolButton>{isRegister ? 'Register' : 'Login'}</CoolButton>
+      </CoolForm>
     </div>
   );
 }
