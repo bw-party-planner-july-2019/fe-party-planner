@@ -2,6 +2,7 @@ import React from 'react';
 import {useAuthActions} from '../store/auth/useAuthActions';
 import {ActionsProvider} from '../contexts/ActionsContext';
 import {Switch, Route} from 'react-router-dom';
+import Form from './Form';
 
 const App = () => {
   const authActions = useAuthActions();
@@ -9,7 +10,7 @@ const App = () => {
   return (
       <ActionsProvider value={{authActions}}>
         <Switch>
-          <Route path='/' render={() => <h1>Hello World</h1>}/>
+          <Route path='/' render={(props) => <Form />}/>
         </Switch>
       </ActionsProvider>
   );
