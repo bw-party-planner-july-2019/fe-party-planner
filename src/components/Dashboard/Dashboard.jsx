@@ -1,5 +1,6 @@
 import React from 'react';
 import Party from './Party';
+
 const data = [
     {
       "id": 1,

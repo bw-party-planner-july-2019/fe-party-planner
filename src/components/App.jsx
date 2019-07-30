@@ -43,16 +43,13 @@ const App = () => {
         <ActionsProvider value={{authActions, partyActions}}>
           <CssBaseline/>
           <BackgroundImage>
-            {/* <Navigation/> */}
+            <Navigation/>
             <Switch>
               <Route path='/list' component={List}/>
               <Route path='/dashboard' component={Dashboard}/>
               <PrivateRoute path='/dashboard' component={Dashboard}/>
-
               <Route path='/register' render={props => <Login {...props} />}/>
-              <Route path='/' render={props => <Login {...props} />}/>
-             
-
+              <Route path='/' render={props => <Login {...props} />}/>         
             </Switch>
           </BackgroundImage>
         </ActionsProvider>
