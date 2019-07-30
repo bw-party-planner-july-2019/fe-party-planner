@@ -52,7 +52,7 @@ function Login(props) {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      const {exp} = jwt_decode(JSON.parse(localStorage.getItem('token')));
+      const {exp} = jwt_decode(localStorage.getItem('token'));
       const currentDate = Date.now() / 1000;
       exp > currentDate ? welcomeBack() : logout();
     }
