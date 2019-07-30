@@ -1,6 +1,7 @@
 import React from 'react';
 import data from './Dashboard';
 import { makeStyles } from '@material-ui/core/styles';
+import { shadows } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -15,9 +16,11 @@ const useStyles = makeStyles({
     background: '#B33771',
     marginBottom: 20,
     marginLeft: 20,
+    border: 2,
   },
 
   title: {
+    marginBottom: 20,
     fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
