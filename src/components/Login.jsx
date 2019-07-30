@@ -24,6 +24,7 @@ const CoolButton = styled.button`
 
 function Login(props) {
   const isAuth = useSelector(state=>state.auth.isAuth);
+  const errors = useSelector(state=>state.auth.errors);
   const [user, setUser] = useState({ username: "", password: ""});
   const [isRegister, setIsRegister] = useState(false);
   const {authActions: {login, register, welcomeBack, logout}} = useContext(ActionsContext);
@@ -53,7 +54,7 @@ function Login(props) {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     console.log(user.username);
     console.log(user.password);
@@ -64,6 +65,8 @@ function Login(props) {
       login(user);
     }
   }
+
+
 
   return (
     <div className="Login">
