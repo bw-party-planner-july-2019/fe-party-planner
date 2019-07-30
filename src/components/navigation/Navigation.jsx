@@ -30,6 +30,7 @@ const Navigation = () => {
             </Typography>
             {!isAuth && <Button component={RouterLink} to="/register" color="inherit">Register</Button>}
             {!isAuth && <Button component={RouterLink} to="/" color="inherit">Login</Button>}
+            {isAuth && <Button component={RouterLink} to='/dashboard/add-party' color="inherit">Add Party</Button>}
             {isAuth && <Button component={RouterLink} to='/' color='inherit' onClick={logout}>Logout</Button>}
           </Toolbar>
         </AppBar>
