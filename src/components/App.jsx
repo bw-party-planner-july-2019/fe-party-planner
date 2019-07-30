@@ -4,7 +4,7 @@ import Login from './Login';
 import {useAuthActions} from '../store/auth/useAuthActions';
 import {ActionsProvider} from '../contexts/ActionsContext';
 import {Switch, Route} from 'react-router-dom';
-import Form from './Form';
+import Form from './AddPartyForm';
 import List from './list/List';
 import {usePartyActions} from '../store/party/usePartyActions';
 import Navigation from './navigation/Navigation';
@@ -17,6 +17,9 @@ import Party from './Dashboard/Party';
 import PrivateRoute from './auth/PrivateRoute';
 
 const theme = createMuiTheme({
+  typography: {
+
+  },
   palette: {
     primary: {main: '#B33771'},
     secondary: {main: '#FEA47F'},
@@ -55,7 +58,10 @@ const App = () => {
           <BackgroundImage>
             <Navigation/>
             <Switch>
+             <PrivateRoute path='/dashboard/add-party' component={Form} />
+
               <Route path='/list' render={()=> <List party_id={1} list={list} />}/>
+
               <PrivateRoute path='/dashboard' component={Dashboard}/>
               <Route path='/register' render={props => <Login {...props} />}/>
               <Route path='/' render={props => <Login {...props} />}/>
