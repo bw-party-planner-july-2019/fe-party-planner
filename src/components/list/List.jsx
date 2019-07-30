@@ -60,4 +60,5 @@ export default function DisplayList({party_id, list}) {
                     })}
         </List>
     );
+
 }
