@@ -23,13 +23,13 @@ const Navigation = () => {
   const classes = useStyles();
   return (
       <div className={classes.root}>
-        <AppBar position="fixed">
+        <AppBar>
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
                 Party Planner
             </Typography>
             {!isAuth && <Button component={RouterLink} to="/register" color="inherit">Register</Button>}
-            {!isAuth && <Button component={RouterLink} to="/login" color="inherit">Login</Button>}
+            {!isAuth && <Button component={RouterLink} to="/" color="inherit">Login</Button>}
             {isAuth && <Button component={RouterLink} to='/' color='inherit' onClick={logout}>Logout</Button>}
           </Toolbar>
         </AppBar>
