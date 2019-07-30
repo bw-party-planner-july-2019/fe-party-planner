@@ -44,7 +44,7 @@ const App = () => {
             <Navigation/>
             <Switch>
               <Route path='/list' component={List}/>
-              <PrivateRoute path='/dashboard' component={Form}/>
+              <PrivateRoute path='/dashboard' component={Homepage}/>
               <Route path='/register' render={props => <Login {...props} />}/>
               <Route path='/' render={props => <Login {...props} />}/>
             </Switch>
