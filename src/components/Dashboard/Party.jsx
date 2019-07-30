@@ -9,6 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 
 const useStyles = makeStyles({
   card: {
@@ -49,7 +50,7 @@ export default function SimpleCard(props) {
               {`Number of Guests: ${props.item.n_of_guests}`}
             </Typography>
             <Typography className={classes.pos}>
-              {`Date: ${props.item.date}`}
+              {`Date: ${moment(props.item.date).format('MMMM Do YYYY, h:mm:ss a')}`}
             </Typography>
             <Typography className={classes.pos}>
               {`Theme: ${props.item.theme}`}

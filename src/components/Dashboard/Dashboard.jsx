@@ -1,40 +1,20 @@
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 import Party from './Party';
+import {useSelector} from 'react-redux';
+import {ActionsContext} from '../../contexts/ActionsContext';
 
-const data = [
-    {
-      "id": 1,
-      "party_name": "Ken B-day",
-      "n_of_guests": 50,
-      "date": "2019-10-07",
-      "theme": "80s",
-      "budget": 500,
-      "user_id": 1
-    },
-    {
-      "id": 2,
-      "party_name": "Office party",
-      "n_of_guests": 150,
-      "date": "2019-12-20",
-      "theme": "X-mas",
-      "budget": 2300,
-      "user_id": 2
-    },
-    {
-      "id": 3,
-      "party_name": "Halloween Party",
-      "n_of_guests": 90,
-      "date": "2019-10-31",
-      "theme": "Zombies",
-      "budget": 90,
-      "user_id": 3
-    }
-  ]
+
  const Dashboard = () => {
-    return(
+   const parties = useSelector(state=>state.party.parties);
+   const {partyActions: {fetchParties}} = useContext(ActionsContext);
+
+   useEffect(()=> fetchParties(),[]);
+
+   console.log(parties);
+   return(
      <div>
          <h1>Dashboard</h1>
-         {data.map((item, i)=> <Party item={item} key={i} />)}
+         {parties.map((item, i)=> <Party item={item} key={i} />)}
      </div>
     ) 
 }
