@@ -24,7 +24,7 @@ export const useAuthActions = () => {
 				payload : res.data,
 			}),
 		).catch((err) => dispatch({ type: LOGIN_FAIL, payload: err.response.data }))
-	}, []);
+	}, [dispatch]);
 
 	const register = useCallback((newUser) => {
 		dispatch({ type: REGISTER_START });
@@ -32,16 +32,16 @@ export const useAuthActions = () => {
 			.post('/auth/register', newUser)
 			.then((res) => dispatch({ type: REGISTER_SUCCESS, payload: res.data }))
 			.catch((err) => dispatch({ type: REGISTER_FAIL, payload: REGISTER_FAIL }));
-	}, []);
+	}, [dispatch]);
 
 	const logout = useCallback(() => {
 		dispatch({ type: LOGOUT });
-	}, []);
+	}, [dispatch]);
 
 	const welcomeBack = useCallback(() => {
 		const token = getLocalStorage();
 		dispatch({ type: WELCOME_BACK, payload: token });
-	}, []);
+	}, [dispatch, getLocalStorage]);
 
 	return { login, register, logout, welcomeBack };
 };
