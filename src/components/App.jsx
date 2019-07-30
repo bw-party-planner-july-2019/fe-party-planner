@@ -12,6 +12,7 @@ import Homepage from './homepage/Homepage';
 import party from '../imgs/party.jpg';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
+import PrivateRoute from './auth/PrivateRoute';
 import Dashboard from './Dashboard/Dashboard';
 
 const theme = createMuiTheme({
@@ -44,7 +45,8 @@ const App = () => {
             <Navigation/>
             <Switch>
               <Route path='/list' component={List}/>
-              <Route path='/dashboard' component={Dashboard}/>
+              <PrivateRoute path='/dashboard' component={Dashboard}/>
+
               <Route path='/register' render={props => <Login {...props} />}/>
               <Route path='/' render={props => <Login {...props} />}/>
             </Switch>
