@@ -23,7 +23,7 @@ const Navigation = () => {
   const classes = useStyles();
   return (
       <div className={classes.root}>
-        <AppBar position="fixed">
+        <AppBar>
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
                 Party Planner
