@@ -14,7 +14,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './auth/PrivateRoute';
-import Dashboard from './Dashboard/Dashboard';
+
 
 const theme = createMuiTheme({
   palette: {
