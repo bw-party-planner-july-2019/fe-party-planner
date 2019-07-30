@@ -8,57 +8,73 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from '@material-ui/icons/Edit';
+import Card from "@material-ui/core/Card";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
+    card: {
+        color: 'white',
+        minWidth: 275,
+        width: 300,
+        backgroundColor: '#B33771',
+    },
+    whiteStyle: {
+        color: 'white',
+        '&:checked': {
+            color: 'white',
+        },
     },
 }));
 
 export default function DisplayList({party_id, list}) {
     const classes = useStyles();
     const listOfItems = list.filter(item => item.party_id = party_id);
+    const [checked, setChecked] = React.useState([0]);
 
-    const statusOfItems = {};
-    listOfItems.map(item =>
-        Object.assign(statusOfItems, {[item.item]: item.purchased})
-    );
+    const handleToggle = value => () => {
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
 
-    const [state, setState] = useState(statusOfItems);
-    const handleChange = name => event => {
-        setState({...state, [name]: event.target.checked});
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+
+        setChecked(newChecked);
     };
 
-
     return (
-        <List className={classes.root}>
-            { console.log(state)}
+        <Grid container spacing={0}>
+            <Card className={classes.card}>
+                <List className={classes.list}>
+                    {console.log("checked items ", checked)}
                     {listOfItems.map(item => {
                         return (
-                            <ListItem   key={item.id} role={undefined} dense button onClick={handleChange(item.item)}>
+                            <ListItem key={item.id} role={undefined} dense button onClick={handleToggle(item)}>
                                 <ListItemIcon>
-                                    <Checkbox
+                                    <Checkbox className={classes.whiteStyle}
                                         edge="start"
-                                        checked={state[item.purchased]}
-                                        // onChange={handleChange(item.item)}
+                                        checked={checked.indexOf(item) !== -1}
                                         value={item.party_id}
                                         disableRipple
-                                        color="primary"
-                                        inputProps={{ 'aria-labelledby': `${item.item} ${item.id}` }}
+
+                                        inputProps={{'aria-labelledby': `${item.item} ${item.id}`}}
                                     />
                                 </ListItemIcon>
-                                <ListItemText id={`${item.item} ${item.id}`} primary={item.item}  />
+                                <ListItemText id={`${item.item} ${item.id}`} primary={item.item}/>
                                 <ListItemSecondaryAction>
                                     <IconButton edge="end" aria-label="comments">
-                                        <EditIcon />
+                                        <EditIcon className={classes.whiteStyle}/>
                                     </IconButton>
                                 </ListItemSecondaryAction>
                             </ListItem>
                         )
                     })}
-        </List>
+                </List>
+            </Card>
+        </Grid>
+
     );
 
 }
