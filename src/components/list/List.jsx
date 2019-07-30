@@ -31,10 +31,6 @@ export default function DisplayList({party_id, list}) {
         setState({...state, [name]: event.target.checked});
     };
 
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     console.log(state)
-    // }
 
     return (
         <List className={classes.root}>
