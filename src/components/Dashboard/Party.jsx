@@ -3,6 +3,7 @@ import data from './Dashboard';
 import { makeStyles } from '@material-ui/core/styles';
 import { shadows } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid';
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
+
   },
 
   pos: {
@@ -34,7 +36,6 @@ const useStyles = makeStyles({
 export default function SimpleCard(props) {
     console.log(props)
   const classes = useStyles();
-
 
   return (
     <div>

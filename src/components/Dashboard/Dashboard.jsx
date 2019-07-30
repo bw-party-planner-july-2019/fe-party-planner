@@ -30,14 +30,12 @@ const data = [
       "user_id": 3
     }
   ]
-
-  const Dashboard = () => {
-     return(
-      <div>
-          <h1>Dashboard</h1>
-          {data.map((item, i)=> <Party item={item} key={i} />)}
-      </div>
-     )
- }
-
- export default Dashboard;
+ const Dashboard = () => {
+    return(
+     <div>
+         <h1>Dashboard</h1>
+         {data.map((item, i)=> <Party item={item} key={i} />)}
+     </div>
+    ) 
+}
+  export default Dashboard
