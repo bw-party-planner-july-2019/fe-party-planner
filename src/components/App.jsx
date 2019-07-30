@@ -4,6 +4,8 @@ import {useAuthActions} from '../store/auth/useAuthActions';
 import {ActionsProvider} from '../contexts/ActionsContext';
 import {Switch, Route} from 'react-router-dom';
 import Form from './Form';
+import List from './list/List';
+import {usePartyActions} from '../store/party/usePartyActions';
 
 const App = () => {
   const authActions = useAuthActions();
@@ -12,7 +14,9 @@ const App = () => {
   return (
      <ActionsProvider value={{ authActions, partyActions }}>
         <Switch>
-          <Route path='/' render={props => <Login {...props} />}/>
+          <Route path='/list' component={List} />
+          <Route path='/dashboard' component={Form} />
+          <Route path='/login' render={props => <Login {...props} />}/>
         </Switch>
       </ActionsProvider>
   );

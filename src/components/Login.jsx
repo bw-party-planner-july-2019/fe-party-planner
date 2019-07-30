@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import {ActionsContext} from '../contexts/ActionsContext';
+
 
 const CoolForm = styled.form`
   text-align: center;
@@ -20,8 +22,18 @@ const CoolButton = styled.button`
 
 
 function Login(props) {
+  console.log(props);
   const [user, setUser] = useState({ username: "", password: ""});
   const [isRegister, setIsRegister] = useState(false);
+  const {authActions: {login, register}} = useContext(ActionsContext);
+  useEffect(()=> {
+    console.log(props.location.pathname)
+    if (props.location.pathname === '/login') {
+      setIsRegister(false)
+    } else if (props.location.pathname === '/register') {
+      setIsRegister(true);
+    }
+  }, [props.location.pathname]);
 
   const handleChange = event => {
     console.log(user, "userbefore");
@@ -32,6 +44,12 @@ function Login(props) {
     event.preventDefault();
     console.log(user.username);
     console.log(user.password);
+    console.log(isRegister);
+    if (isRegister) {
+      register(user);
+    } else {
+      login(user);
+    }
   }
 
   return (

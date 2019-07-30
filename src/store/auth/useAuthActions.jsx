@@ -22,8 +22,8 @@ export const useAuthActions = () => {
 			dispatch({
 				type    : LOGIN_SUCCESS,
 				payload : res.data,
-			}).catch((err) => dispatch({ type: LOGIN_FAIL, payload: err.response.data })),
-		);
+			}),
+		).catch((err) => dispatch({ type: LOGIN_FAIL, payload: err.response.data }))
 	}, []);
 
 	const register = useCallback((newUser) => {
@@ -43,5 +43,5 @@ export const useAuthActions = () => {
 		dispatch({ type: WELCOME_BACK, payload: token });
 	}, []);
 
-	return [ login, register, logout, welcomeBack ];
+	return { login, register, logout, welcomeBack };
 };
