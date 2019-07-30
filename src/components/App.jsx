@@ -30,7 +30,7 @@ const BackgroundImage = styled.div`
   padding: 0;
   background-image: linear-gradient(90deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 100%), url(${party});
   background-position: center center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
 `;
 
