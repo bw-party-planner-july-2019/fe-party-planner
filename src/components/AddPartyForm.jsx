@@ -1,11 +1,9 @@
 import React from 'react';
-import {Field, Form, withFormik} from 'formik';
 import TextField from '@material-ui/core/TextField';
-import {DateTimePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 import {useForm} from '../hooks/useForm';
-import MomentUtils from '@date-io/moment';
+
 import {useSelector} from 'react-redux';
 
 const TempStyle = styled.div`

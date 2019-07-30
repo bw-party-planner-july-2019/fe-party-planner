@@ -10,6 +10,19 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from '@material-ui/icons/Edit';
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
+import { pink } from '@material-ui/core/colors';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { withStyles } from '@material-ui/core/styles';
+
+const StyledCheckbox = withStyles({
+    root: {
+        color: pink[50],
+        '&$checked': {
+            color: pink[50],
+        },
+    },
+    checked: {},
+})(props => <Checkbox color="default" {...props} />);
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -19,10 +32,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#B33771',
     },
     whiteStyle: {
-        color: 'white',
-        '&:checked': {
-            color: 'white',
-        },
+        color: pink[50],
     },
 }));
 
@@ -45,7 +55,8 @@ export default function DisplayList({party_id, list}) {
     };
 
     return (
-        <Grid container spacing={0}>
+        <div>
+            <h1>Dashboard</h1>
             <Card className={classes.card}>
                 <List className={classes.list}>
                     {console.log("checked items ", checked)}
@@ -53,14 +64,17 @@ export default function DisplayList({party_id, list}) {
                         return (
                             <ListItem key={item.id} role={undefined} dense button onClick={handleToggle(item)}>
                                 <ListItemIcon>
-                                    <Checkbox className={classes.whiteStyle}
-                                        edge="start"
-                                        checked={checked.indexOf(item) !== -1}
-                                        value={item.party_id}
-                                        disableRipple
+                                    <FormControlLabel
+                                        control={
+                                            <StyledCheckbox
+                                                edge="start"
+                                                checked={checked.indexOf(item) !== -1}
+                                                value={item.party_id}
+                                                disableRipple
 
-                                        inputProps={{'aria-labelledby': `${item.item} ${item.id}`}}
-                                    />
+                                                inputProps={{'aria-labelledby': `${item.item} ${item.id}`}}
+                                            />
+                                        }/>
                                 </ListItemIcon>
                                 <ListItemText id={`${item.item} ${item.id}`} primary={item.item}/>
                                 <ListItemSecondaryAction>
@@ -73,7 +87,7 @@ export default function DisplayList({party_id, list}) {
                     })}
                 </List>
             </Card>
-        </Grid>
+        </div>
 
     );
 
