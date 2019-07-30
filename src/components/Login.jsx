@@ -12,16 +12,16 @@ import Link from '@material-ui/core/Link'
 
 const useStyles = makeStyles(theme => ({
   container: {
+    color: '#fff',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: '100vh',
+    height: '90vh',
     flexDirection: 'column'
   },
   formShow: {
-    backgroundColor: '#FEA47F',
-    opacity: '0.7'
+    backgroundColor: '#B33771',
   }
 }));
 
@@ -36,6 +36,7 @@ const CoolForm = styled.form`
 `;
 
 const CoolButton = styled.button`
+  color: #FEA47F;
   font-weight: bold;
   margin: 20px;
   padding: 5px 20px;
@@ -113,7 +114,7 @@ function Login(props) {
           {/*      onChange={event => handleChange(event)}*/}
           {/*  />*/}
           {/*</label>*/}
-          <Button color='primary' type='submit'>{isRegister ? 'Register' : 'Login'}</Button>
+          <Button color='secondary' type='submit'>{isRegister ? 'Register' : 'Login'}</Button>
           {/*<CoolButton>{isRegister ? 'Register' : 'Login'}</CoolButton>*/}
           {!isRegister && <Typography>Not a Member?  Click <Link component={RouterLink} to='/register'>Here</Link> to Register</Typography>}
           {isRegister && <Typography>Already a Member?  Click <Link component={RouterLink} to='/'>Here</Link> to Login</Typography>}

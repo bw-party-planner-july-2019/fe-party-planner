@@ -2,8 +2,8 @@ import React from 'react';
 import data from './Dashboard';
 import { makeStyles } from '@material-ui/core/styles';
 import { shadows } from '@material-ui/system';
-import Grid from '@material-ui/core/Grid';
 
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,6 +13,9 @@ import moment from 'moment';
 
 const useStyles = makeStyles({
   card: {
+    marginLeft: 20,
+    marginRight: 20,
+
     color: '#fff',
     background: '#B33771',
     border: 2,
@@ -38,7 +41,8 @@ export default function SimpleCard(props) {
   const classes = useStyles();
 
   return (
-    <Grid item xs={4}>
+      <Grid item xs={4}>
+
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -57,8 +61,7 @@ export default function SimpleCard(props) {
               {`Budget: ${props.item.budget}`}
             </Typography>
           </CardContent>
-          
-          <CardActions>
+                 <CardActions>
         <Button color="secondary" size="large">View</Button>
         <Button color="secondary" size="large">Edit</Button>
         <Button color="secondary" size="large">Delete</Button>
