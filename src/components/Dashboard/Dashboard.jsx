@@ -2,6 +2,7 @@ import React, {useEffect, useContext} from 'react';
 import Party from './Party';
 import {useSelector} from 'react-redux';
 import {ActionsContext} from '../../contexts/ActionsContext';
+import Grid from '@material-ui/core/Grid';
 
 
  const Dashboard = () => {
@@ -14,8 +15,10 @@ import {ActionsContext} from '../../contexts/ActionsContext';
    return(
      <div>
          <h1>Dashboard</h1>
-         {parties.map((item, i)=> <Party item={item} key={i} />)}
+         <Grid container spacing={3}>
+            {parties.map((item, i)=> <Party item={item} key={i} />)}
+         </Grid>
      </div>
-    ) 
+    )
 }
   export default Dashboard
