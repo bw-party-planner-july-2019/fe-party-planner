@@ -16,7 +16,7 @@ import Grid from '@material-ui/core/Grid';
           
        
          <h1>Dashboard</h1>
-         <Grid container spacing={4}>
+         <Grid container spacing={2}>
          {parties.map((item, i)=> <Party item={item} key={i} />)}
          
          </Grid>

@@ -16,6 +16,8 @@ const useStyles = makeStyles({
     color: '#fff',
     background: '#B33771',
     border: 2,
+    marginLeft: 20,
+    marginRight: 20,
   },
 
   title: {
