@@ -31,6 +31,7 @@ const AddPartyForm = () => {
   function submit() {
     submitHandler(formValues);
   }
+  //GIT FTW
   return (
       <TempStyle>
         <form onSubmit={submit}>
