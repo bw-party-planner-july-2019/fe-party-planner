@@ -12,13 +12,10 @@ import Homepage from './homepage/Homepage';
 import party from '../imgs/party.jpg';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
-<<<<<<< HEAD
 import Dashboard from './Dashboard/Dashboard';
-=======
 import PrivateRoute from './auth/PrivateRoute';
 import Dashboard from './Dashboard/Dashboard';
 
->>>>>>> 27acc17d9123f4f03be60d13dbbee8d7cf10e64d
 const theme = createMuiTheme({
   palette: {
     primary: {main: '#B33771'},
