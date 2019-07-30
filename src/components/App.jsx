@@ -12,6 +12,7 @@ import Homepage from './homepage/Homepage';
 import party from '../imgs/party.jpg';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
+import Dashboard from './Dashboard/Dashboard';
 
 const theme = createMuiTheme({
   palette: {
@@ -43,7 +44,7 @@ const App = () => {
             <Navigation/>
             <Switch>
               <Route path='/list' component={List}/>
-              <Route path='/dashboard' component={Form}/>
+              <Route path='/dashboard' component={Dashboard}/>
               <Route path='/register' render={props => <Login {...props} />}/>
               <Route path='/login' render={props => <Login {...props} />}/>
               <Route path='/' component={Homepage}/>
