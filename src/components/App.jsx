@@ -2,6 +2,7 @@ import React from 'react';
 import {useAuthActions} from '../store/auth/useAuthActions';
 import {ActionsProvider} from '../contexts/ActionsContext';
 import {Switch, Route} from 'react-router-dom';
+import DisplayList1 from "./list/List1";
 import DisplayList from "./list/List";
 
 const data = [{ id: 1, party_id: 1, item: 'balloons', purchased: false, price: 5 },
@@ -20,6 +21,7 @@ const App = () => {
   return (
       <ActionsProvider value={{authActions}}>
         <Switch>
+          {/*<Route path='/' render={() => <DisplayList1 party_id={1} list={data}/>}/>*/}
           <Route path='/' render={() => <DisplayList party_id={1} list={data}/>}/>
         </Switch>
       </ActionsProvider>
