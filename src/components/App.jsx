@@ -16,7 +16,6 @@ import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './auth/PrivateRoute';
 import Dashboard from './Dashboard/Dashboard';
 
->>>>>>> 27acc17d9123f4f03be60d13dbbee8d7cf10e64d
 const theme = createMuiTheme({
   palette: {
     primary: {main: '#B33771'},
