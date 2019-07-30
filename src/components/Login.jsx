@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import {ActionsContext} from '../contexts/ActionsContext';
-
+import {useSelector} from 'react-redux';
+import jwt_decode from 'jwt-decode'
 
 const CoolForm = styled.form`
   text-align: center;
@@ -22,10 +23,23 @@ const CoolButton = styled.button`
 
 
 function Login(props) {
-  console.log(props);
+  const isAuth = useSelector(state=>state.auth.isAuth);
   const [user, setUser] = useState({ username: "", password: ""});
   const [isRegister, setIsRegister] = useState(false);
-  const {authActions: {login, register}} = useContext(ActionsContext);
+  const {authActions: {login, register, welcomeBack, logout}} = useContext(ActionsContext);
+
+  useEffect(()=> {
+    if (localStorage.getItem('token')) {
+      const {exp} = jwt_decode(JSON.parse(localStorage.getItem('token')));
+      const currentDate = Date.now() / 1000;
+      exp > currentDate ? welcomeBack(localStorage.getItem('token')) : logout();
+    }
+  }, []);
+
+  useEffect(()=> {
+    isAuth && props.history.push('/dashboard')
+  },[isAuth])
+
   useEffect(()=> {
     if (props.location.pathname === '/') {
       setIsRegister(false)
