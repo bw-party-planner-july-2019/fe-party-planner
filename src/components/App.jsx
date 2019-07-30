@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import Login from './Login';
 import {useAuthActions} from '../store/auth/useAuthActions';
 import {ActionsProvider} from '../contexts/ActionsContext';
@@ -11,6 +11,14 @@ import Navigation from './navigation/Navigation';
 import Homepage from './homepage/Homepage';
 import party from '../imgs/party.jpg';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {main: '#B33771'},
+    secondary: {main: '#FEA47F'},
+  },
+});
 
 const BackgroundImage = styled.div`
   width: 100%;
@@ -28,19 +36,21 @@ const App = () => {
   const partyActions = usePartyActions();
 
   return (
-     <ActionsProvider value={{ authActions, partyActions }}>
-       <CssBaseline/>
-       <BackgroundImage>
-       <Navigation/>
-        <Switch>
-          <Route path='/list' component={List} />
-          <Route path='/dashboard' component={Form} />
-          <Route path='/register' render={props => <Login {...props} />}/>
-          <Route path='/login' render={props => <Login {...props} />}/>
-          <Route path='/' component={Homepage} />
-        </Switch>
-       </BackgroundImage>
-      </ActionsProvider>
+      <MuiThemeProvider theme={theme}>
+        <ActionsProvider value={{authActions, partyActions}}>
+          <CssBaseline/>
+          <BackgroundImage>
+            <Navigation/>
+            <Switch>
+              <Route path='/list' component={List}/>
+              <Route path='/dashboard' component={Form}/>
+              <Route path='/register' render={props => <Login {...props} />}/>
+              <Route path='/login' render={props => <Login {...props} />}/>
+              <Route path='/' component={Homepage}/>
+            </Switch>
+          </BackgroundImage>
+        </ActionsProvider>
+      </MuiThemeProvider>
   );
 };
 
