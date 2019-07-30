@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Party from './Party';
 const data = [
     {
       "id": 1,
@@ -29,5 +29,12 @@ const data = [
       "user_id": 3
     }
   ]
- const Dashboard = () => <h1> Dashboard </h1>
+ const Dashboard = () => {
+    return(
+     <div>
+         <h1>Dashboard</h1>
+         {data.map((item, i)=> <Party item={item} key={i} />)}
+     </div>
+    ) 
+}
   export default Dashboard
