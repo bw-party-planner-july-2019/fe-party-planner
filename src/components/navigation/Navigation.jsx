@@ -29,7 +29,7 @@ const Navigation = () => {
                 Party Planner
             </Typography>
             {!isAuth && <Button component={RouterLink} to="/register" color="inherit">Register</Button>}
-            {!isAuth && <Button component={RouterLink} to="/login" color="inherit">Login</Button>}
+            {!isAuth && <Button component={RouterLink} to="/" color="inherit">Login</Button>}
             {isAuth && <Button component={RouterLink} to='/' color='inherit' onClick={logout}>Logout</Button>}
           </Toolbar>
         </AppBar>

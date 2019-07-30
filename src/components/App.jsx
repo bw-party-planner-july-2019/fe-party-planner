@@ -45,8 +45,7 @@ const App = () => {
               <Route path='/list' component={List}/>
               <Route path='/dashboard' component={Form}/>
               <Route path='/register' render={props => <Login {...props} />}/>
-              <Route path='/login' render={props => <Login {...props} />}/>
-              <Route path='/' component={Homepage}/>
+              <Route path='/' render={props => <Login {...props} />}/>
             </Switch>
           </BackgroundImage>
         </ActionsProvider>

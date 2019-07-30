@@ -28,7 +28,7 @@ function Login(props) {
   const {authActions: {login, register}} = useContext(ActionsContext);
   useEffect(()=> {
     console.log(props.location.pathname)
-    if (props.location.pathname === '/login') {
+    if (props.location.pathname === '/') {
       setIsRegister(false)
     } else if (props.location.pathname === '/register') {
       setIsRegister(true);
