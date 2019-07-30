@@ -1,4 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
+import {Link as RouterLink} from 'react-router-dom';
 import styled from 'styled-components';
 import {ActionsContext} from '../contexts/ActionsContext';
 import {useSelector} from 'react-redux';
@@ -7,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import {makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -113,6 +115,8 @@ function Login(props) {
           {/*</label>*/}
           <Button color='primary' type='submit'>{isRegister ? 'Register' : 'Login'}</Button>
           {/*<CoolButton>{isRegister ? 'Register' : 'Login'}</CoolButton>*/}
+          {!isRegister && <Typography>Not a Member?  Click <Link component={RouterLink} to='/register'>Here</Link> to Register</Typography>}
+          {isRegister && <Typography>Already a Member?  Click <Link component={RouterLink} to='/'>Here</Link> to Login</Typography>}
         </CoolForm>
       </div>
   );
