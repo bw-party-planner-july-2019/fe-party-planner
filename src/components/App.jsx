@@ -7,9 +7,10 @@ import Form from './Form';
 
 const App = () => {
   const authActions = useAuthActions();
+  const partyActions = usePartyActions();
 
   return (
-      <ActionsProvider value={{authActions}}>
+     <ActionsProvider value={{ authActions, partyActions }}>
         <Switch>
           <Route path='/' render={props => <Login {...props} />}/>
         </Switch>
@@ -18,3 +19,4 @@ const App = () => {
 };
 
 export default App;
+
