@@ -8,6 +8,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from 'moment';
 import {useSelector} from 'react-redux';
 import {ActionsContext} from '../../contexts/ActionsContext';
@@ -47,6 +52,7 @@ function Party(props) {
     user_id: user_Id,
   };
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
   const [isSingle, setIsSingle] = useState(false);
   const {partyActions: {fetchParty}} = useContext(ActionsContext);
   const [values, setValues] = useState(initialState);
@@ -64,7 +70,10 @@ function Party(props) {
       setValues(props.item);
     }
   }, [party]);
-
+  function handleConfirm(id) {
+    console.log(id);
+    setOpen(false);
+  }
   if (isLoading) {
     return <h3>Loading, Replace me with something nice</h3>;
   } else {
@@ -98,7 +107,19 @@ function Party(props) {
                 <Button color="secondary" size="large" component={RouterLink}
                         to={`/dashboard/edit-party/${values.id}`}>Edit</Button>}
                 {user_Id === values.user_id &&
-                <Button color="secondary" size="large">Delete</Button>}
+                <Button color="secondary" size="large" onClick={()=>setOpen(true)}>Delete</Button>}
+                <Dialog open={open} onClose={handleConfirm} aria-labelledby="confirm-delete-title" aria-describedby="confirm-delete-description">
+                  <DialogTitle id='confirm-delete-title'>{`Are you sure you want to delete ${values.party_name}?`}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id='confirm-delete-description'>
+                      {`Once you click DELETE, ${values.party_name} will be deleted.  Are you sure?`}
+                    </DialogContentText>
+                    <DialogActions>
+                      <Button onClick={()=>setOpen(false)} color="primary">Cancel</Button>
+                      <Button onClick={()=>handleConfirm(values.id)} color="primary" autoFocus>Confirm</Button>
+                    </DialogActions>
+                  </DialogContent>
+                </Dialog>
               </CardActions>
             </Card>
           </Grid>
