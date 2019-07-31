@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {withRouter} from 'react-router-dom'
 import Checkbox from '@material-ui/core/Checkbox';
 import {makeStyles} from '@material-ui/core/styles';
 import ListItem from "@material-ui/core/ListItem";
@@ -36,7 +37,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function DisplayList() {
+function DisplayList(props) {
+  console.log(props);
     const list = [
         {id: 1, party_id: 1, item: 'balloons', purchased: false, price: 5},
         {id: 2, party_id: 1, item: 'drinks', purchased: false, price: 55},
@@ -103,3 +105,4 @@ export default function DisplayList() {
     );
 
 }
+export default withRouter(DisplayList)
