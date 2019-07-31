@@ -10,7 +10,9 @@ import {
   GET_SINGLE_PARTY_FAIL,
   GET_SINGLE_PARTY_START,
   GET_SINGLE_PARTY_SUCCESS,
+  UPDATE_PARTY_FAIL,
   UPDATE_PARTY_START,
+  UPDATE_PARTY_SUCCESS,
 } from './types';
 import {partyApiWithAuth as axios} from '../../helpers/axiosConfig';
 
@@ -61,8 +63,11 @@ export const usePartyActions = () => {
         dispatch({type: UPDATE_PARTY_START});
         axios()
             .put(`/parties/${updatedParty.id}`, updatedParty)
-            .then((res) => console.log(res.data))
-            .catch((err) => console.log(err));
+            .then(() => {
+              dispatch({type: UPDATE_PARTY_SUCCESS, payload: updatedParty});
+            })
+            .catch((err) => dispatch(
+                {type: UPDATE_PARTY_FAIL, payload: err.response.data}));
       },
       [dispatch],
   );
