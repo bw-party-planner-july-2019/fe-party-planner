@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
-import {useForm} from '../hooks/useForm';
-
 import {useSelector} from 'react-redux';
+import {ActionsContext} from '../contexts/ActionsContext';
 
 const TempStyle = styled.div`
   width: 100%;
@@ -15,29 +14,34 @@ const TempStyle = styled.div`
   flex-direction: column
 `;
 
-const AddPartyForm = () => {
+const AddPartyForm = props => {
   const userId = useSelector(state=>state.auth.user.userID);
-  const [formValues, changeHandler, submitHandler] = useForm({
+  const {partyActions: {addParty}} = useContext(ActionsContext);
+  const [values, setValues] = useState({
     party_name: '',
     date: Date.now(),
     n_of_guests: 0,
     theme: '',
     budget: 0,
     user_id: userId
-  }, submit);
+  })
 
-  function submit() {
-    submitHandler(formValues);
+  const handleChange = e => setValues({...values, [e.target.name]: e.target.value});
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    addParty(values);
+    props.history.push('/dashboard')
   }
-  //GIT FTW
+
   return (
       <TempStyle>
-        <form onSubmit={submit}>
-          <TextField name='party_name' value={formValues.party_name} label='Name of Party' onChange={changeHandler} />
-          <TextField name='n_of_guests' value={formValues.n_of_guests} label='Number of Guests' onChange={changeHandler} />
-          <TextField name='theme' value={formValues.theme} label='Theme of the Party' onChange={changeHandler} />
-          <TextField name='budget' value={formValues.budget} label='Budget for the Party' onChange={changeHandler} />
-          <TextField name='date' type='date' value={formValues.date} label='Date of the Party' onChange={changeHandler} />
+        <form onSubmit={handleSubmit}>
+          <TextField name='party_name' value={values.party_name} label='Name of Party' onChange={handleChange} />
+          <TextField name='n_of_guests' value={values.n_of_guests} label='Number of Guests' onChange={handleChange} />
+          <TextField name='theme' value={values.theme} label='Theme of the Party' onChange={handleChange} />
+          <TextField name='budget' value={values.budget} label='Budget for the Party' onChange={handleChange} />
+          <TextField name='date' type='date' value={values.date} label='Date of the Party' onChange={handleChange} />
           <Button color='secondary' type='submit'>Submit</Button>
         </form>
       </TempStyle>
