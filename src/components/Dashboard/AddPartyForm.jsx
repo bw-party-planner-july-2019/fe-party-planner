@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
 import {ActionsContext} from '../../contexts/ActionsContext';
+import './AddPartyForm.css';
 
 const TempStyle = styled.div`
   width: 100%;
@@ -55,7 +56,7 @@ const AddPartyForm = props => {
 
   return (
       <TempStyle>
-        <form onSubmit={handleSubmit}>
+        <form className='editForm' onSubmit={handleSubmit}>
           <TextField name='party_name' value={values.party_name}
                      label='Name of Party' onChange={handleChange}/>
           <TextField name='n_of_guests' value={values.n_of_guests}
@@ -66,7 +67,7 @@ const AddPartyForm = props => {
                      label='Budget for the Party' onChange={handleChange}/>
           <TextField name='date' type='date' value={values.date}
                      label='Date of the Party' onChange={handleChange}/>
-          <Button color='secondary' type='submit'>Submit</Button>
+          <Button className='submitButton' color='secondary' size='large' type='submit'>Submit</Button>
         </form>
       </TempStyle>
   );
