@@ -3,7 +3,9 @@ import {useDispatch} from 'react-redux';
 
 import {
   ADD_PARTY_START,
+  DELETE_PARTY_FAIL,
   DELETE_PARTY_START,
+  DELETE_PARTY_SUCCESS,
   GET_ALL_PARTIES_FAIL,
   GET_ALL_PARTIES_START,
   GET_ALL_PARTIES_SUCCESS,
@@ -77,8 +79,9 @@ export const usePartyActions = () => {
         dispatch({type: DELETE_PARTY_START});
         axios()
             .delete(`/parties/${id}`)
-            .then((res) => console.log(res.data))
-            .catch((err) => console.log(err));
+            .then(() => dispatch({type: DELETE_PARTY_SUCCESS, payload: id}))
+            .catch((err) => dispatch(
+                {type: DELETE_PARTY_FAIL, payload: err.response.data}));
       },
       [dispatch],
   );
