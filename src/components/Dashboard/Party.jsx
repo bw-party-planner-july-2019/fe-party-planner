@@ -63,6 +63,7 @@ function Party(props) {
     fetchParty(props.match.params.id);
   }, []);
 
+
   useEffect(() => {
     if (party && party.id) {
       setValues(party);
