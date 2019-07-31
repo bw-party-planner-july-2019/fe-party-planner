@@ -6,7 +6,6 @@ import {ActionsProvider} from '../contexts/ActionsContext';
 import {Route, Switch} from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import AddPartyForm from './Dashboard/AddPartyForm';
-import List from './list/List';
 import {usePartyActions} from '../store/party/usePartyActions';
 import Navigation from './navigation/Navigation';
 import party from '../imgs/party.jpg';
@@ -16,6 +15,7 @@ import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './auth/PrivateRoute';
 import Party from './Dashboard/Party';
 import {useShoppingActions} from '../store/shopping/useShoppingActions';
+import CreateList from "./createList/Items";
 
 const theme = createMuiTheme({
   typography: {},
