@@ -4,6 +4,7 @@ import Login from './Login';
 import {useAuthActions} from '../store/auth/useAuthActions';
 import {ActionsProvider} from '../contexts/ActionsContext';
 import {Switch, Route} from 'react-router-dom';
+import Container from '@material-ui/core/Container'
 import Form from './AddPartyForm';
 import List from './list/List';
 import {usePartyActions} from '../store/party/usePartyActions';
@@ -28,12 +29,13 @@ const theme = createMuiTheme({
 
 const BackgroundImage = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 3.5% 0;
+  background-attachment: fixed;
   background-image: linear-gradient(90deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 100%), url(${party});
-  background-position: center center;
   background-repeat: repeat;
+  background-position: center center;
   background-size: cover;
 `;
 
@@ -57,6 +59,7 @@ const App = () => {
           <CssBaseline/>
           <BackgroundImage>
             <Navigation/>
+            <Container fluid>
             <Switch>
              <PrivateRoute path='/dashboard/add-party' component={Form} />
 
@@ -66,6 +69,7 @@ const App = () => {
               <Route path='/register' render={props => <Login {...props} />}/>
               <Route path='/' render={props => <Login {...props} />}/>
             </Switch>
+            </Container>
           </BackgroundImage>
         </ActionsProvider>
       </MuiThemeProvider>
