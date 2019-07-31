@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid';
 
    useEffect(()=> fetchParties(),[]);
 
-   console.log(parties);
    return(
      <div>
           

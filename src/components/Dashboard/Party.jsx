@@ -65,7 +65,6 @@ function Party(props) {
     }
   }, [party]);
 
-  console.log(values);
   if (isLoading) {
     return <h3>Loading, Replace me with something nice</h3>;
   } else {
