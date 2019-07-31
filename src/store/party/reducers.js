@@ -23,34 +23,34 @@ const initialState = {
   errors: null,
 };
 
-export const eventsReducer = (state = initialState, {type, payload}) => {
+export const eventsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_ALL_PARTIES_START:
-      return {...state, isLoading: true, errors: null};
+      return { ...state, isLoading: true, errors: null };
     case GET_ALL_PARTIES_SUCCESS:
-      return {...state, isLoading: false, parties: payload, errors: null};
+      return { ...state, isLoading: false, parties: payload, errors: null };
     case GET_ALL_PARTIES_FAIL:
-      return {...state, isLoading: false, parties: [], errors: payload};
+      return { ...state, isLoading: false, parties: [], errors: payload };
     case GET_SINGLE_PARTY_START:
-      return {...state, isLoading: true, errors: null};
+      return { ...state, isLoading: true, errors: null };
     case GET_SINGLE_PARTY_SUCCESS:
-      return {...state, isLoading: false, errors: null, party: payload};
+      return { ...state, isLoading: false, errors: null, party: payload };
     case GET_SINGLE_PARTY_FAIL:
-      return {...state, isLoading: false, errors: payload, party: {}};
+      return { ...state, isLoading: false, errors: payload, party: {} };
     case ADD_PARTY_START:
-      return {...state, isLoading: true, errors: null, party: {}};
+      return { ...state, isLoading: true, errors: null, party: {} };
     case ADD_PARTY_SUCCESS:
       return {
         ...state,
         isLoading: false,
         errors: null,
         party: {},
-        parties: {...state.parties, payload},
+        parties: { ...state.parties, payload },
       };
     case ADD_PARTY_FAIL:
-      return {...state, isLoading: false, errors: payload, party: {}};
+      return { ...state, isLoading: false, errors: payload, party: {} };
     case UPDATE_PARTY_START:
-      return {...state, isLoading: true, errors: null, party: {}};
+      return { ...state, isLoading: true, errors: null, party: {} };
     case UPDATE_PARTY_SUCCESS:
       return {
         ...state,
@@ -58,12 +58,12 @@ export const eventsReducer = (state = initialState, {type, payload}) => {
         errors: null,
         party: {},
         parties: state.parties.map(
-            party => party.id === payload.id ? payload : party),
+          party => party.id === payload.id ? payload : party),
       };
     case UPDATE_PARTY_FAIL:
-      return {...state, isLoading: false, errors: payload, party: {}};
+      return { ...state, isLoading: false, errors: payload, party: {} };
     case DELETE_PARTY_START:
-      return {...state, isLoading: true, errors: null, party: {}};
+      return { ...state, isLoading: true, errors: null, party: {} };
     case DELETE_PARTY_SUCCESS:
       return {
         ...state,
@@ -73,7 +73,7 @@ export const eventsReducer = (state = initialState, {type, payload}) => {
         parties: state.parties.filter(party => party.id !== payload),
       };
     case DELETE_PARTY_FAIL:
-      return {...state, isLoading: false, errors: payload, party: {}};
+      return { ...state, isLoading: false, errors: payload, party: {} };
     default:
       return state;
   }
