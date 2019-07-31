@@ -16,7 +16,7 @@ export default function ContainedButtons(list) {
 
   return (
     <div>
-      <Button className={classes.button}>
+      <Button variant="contained" className={classes.button}>
         Price
       </Button>
       </div>
