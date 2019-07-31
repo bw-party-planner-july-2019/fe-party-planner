@@ -13,9 +13,6 @@ import moment from 'moment';
 
 const useStyles = makeStyles({
   card: {
-    marginLeft: 20,
-    marginRight: 20,
-
     color: '#fff',
     background: '#B33771',
     border: 2,
@@ -41,7 +38,7 @@ export default function SimpleCard(props) {
   const classes = useStyles();
 
   return (
-      <Grid item xs={4}>
+      <Grid item xs>
 
         <Card className={classes.card}>
           <CardContent>
