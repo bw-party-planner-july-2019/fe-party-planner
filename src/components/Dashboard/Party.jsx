@@ -54,7 +54,7 @@ function Party(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [isSingle, setIsSingle] = useState(false);
-  const {partyActions: {fetchParty}} = useContext(ActionsContext);
+  const {partyActions: {fetchParty, deleteParty}} = useContext(ActionsContext);
   const [values, setValues] = useState(initialState);
 
   useEffect(() => props.match.params.id && setIsSingle(true), []);
@@ -71,7 +71,7 @@ function Party(props) {
     }
   }, [party]);
   function handleConfirm(id) {
-    console.log(id);
+    deleteParty(id);
     setOpen(false);
   }
   if (isLoading) {
