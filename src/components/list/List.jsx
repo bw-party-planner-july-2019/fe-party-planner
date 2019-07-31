@@ -53,9 +53,9 @@ function DisplayList(props) {
   //     {id: 9, party_id: 3, item: 'music', purchased: false, price: 10},
   // ];
   const classes = useStyles();
-  const listOfItems = list.filter(item => item.party_id === list.party_id);
+  const listOfItems = list.filter(item => item.party_id.toString() === props.match.params.id );
   const [checked, setChecked] = useState([0]);
-
+  console.log(listOfItems);
   useEffect(() => {
     if (props.mode === 'shopping') props.match.params &&
     props.match.params.id && fetchShoppingList(props.match.params.id);
