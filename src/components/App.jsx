@@ -14,6 +14,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './auth/PrivateRoute';
+import Party from './Dashboard/Party';
 
 const theme = createMuiTheme({
   typography: {},
@@ -58,8 +59,11 @@ const App = () => {
           <BackgroundImage>
             <Navigation/>
             <Container fluid>
-              <Switch> <PrivateRoute path='/dashboard/add-party'
-                                     component={AddPartyForm}/>
+              <Switch>
+                <PrivateRoute path='/dashboard/view-party/:id' component={Party} />
+                <PrivateRoute path='/dashboard/edit-party/:id' component={AddPartyForm} />
+                <PrivateRoute path='/dashboard/add-party'
+                              component={AddPartyForm}/>
                 <Route path='/list'
                        render={() => <List party_id={1} list={list}/>}/>
                 <PrivateRoute path='/dashboard' component={Dashboard}/>
