@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Link as RouterLink, withRouter} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
-
+import List from '../list/List';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -57,11 +57,11 @@ function Party(props) {
     fetchParty(props.match.params.id);
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     if (party && party.id) {
       setValues(party);
-    } else if(props.item && props.item.id) {
-      setValues(props.item)
+    } else if (props.item && props.item.id) {
+      setValues(props.item);
     }
   }, [party]);
 
@@ -70,38 +70,41 @@ function Party(props) {
     return <h3>Loading, Replace me with something nice</h3>;
   } else {
     return (
-        <Grid item xs={12} sm={6} md={4} xl={3}>
-          <Card className={classes.card}>
-            <CardContent>
-              <Typography className={classes.title} color="textSecondary"
-                          gutterBottom>
-                {`Party Name: ${values.party_name}`}
-              </Typography>
-              <Typography className={classes.pos}>
-                {`Number of Guests: ${values.n_of_guests}`}
-              </Typography>
-              <Typography className={classes.pos}>
-                {`Date: ${moment(values.date)
-                    .format('MMMM Do YYYY, h:mm:ss a')}`}
-              </Typography>
-              <Typography className={classes.pos}>
-                {`Theme: ${values.theme}`}
-              </Typography>
-              <Typography className={classes.pos}>
-                {`Budget: ${values.budget}`}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button color="secondary" size="large" component={RouterLink}
-                      to={`/dashboard/view-party/${values.id}`}>View</Button>
-              {user_Id === values.user_id &&
-              <Button color="secondary" size="large" component={RouterLink}
-                      to={`/dashboard/edit-party/${values.id}`}>Edit</Button>}
-              {user_Id === values.user_id &&
-              <Button color="secondary" size="large">Delete</Button>}
-            </CardActions>
-          </Card>
-        </Grid>
+        <>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card className={classes.card}>
+              <CardContent>
+                <Typography className={classes.title} color="textSecondary"
+                            gutterBottom>
+                  {`Party Name: ${values.party_name}`}
+                </Typography>
+                <Typography className={classes.pos}>
+                  {`Number of Guests: ${values.n_of_guests}`}
+                </Typography>
+                <Typography className={classes.pos}>
+                  {`Date: ${moment(values.date)
+                      .format('MMMM Do YYYY, h:mm:ss a')}`}
+                </Typography>
+                <Typography className={classes.pos}>
+                  {`Theme: ${values.theme}`}
+                </Typography>
+                <Typography className={classes.pos}>
+                  {`Budget: ${values.budget}`}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button color="secondary" size="large" component={RouterLink}
+                        to={`/dashboard/view-party/${values.id}`}>View</Button>
+                {user_Id === values.user_id &&
+                <Button color="secondary" size="large" component={RouterLink}
+                        to={`/dashboard/edit-party/${values.id}`}>Edit</Button>}
+                {user_Id === values.user_id &&
+                <Button color="secondary" size="large">Delete</Button>}
+              </CardActions>
+            </Card>
+          </Grid>
+          {isSingle && <List/>}
+        </>
     );
   }
 }
