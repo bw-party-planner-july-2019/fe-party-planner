@@ -65,7 +65,7 @@ function Party(props) {
 
 
   useEffect(() => {
-    if (party && party.id) {
+    if (party && party.id && props.match.params && props.match.params.id) {
       setValues(party);
     } else if (props.item && props.item.id) {
       setValues(props.item);
@@ -126,6 +126,7 @@ function Party(props) {
           </Grid>
           {isSingle && <List mode={`shopping`}/>}
           {isSingle && <List mode={`todos`}/>}
+          {isSingle && <Button component={RouterLink} to='/dashboard' color="primary">Back to Dashboard</Button>}
         </>
     );
   }
