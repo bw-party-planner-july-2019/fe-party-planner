@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
@@ -15,33 +15,57 @@ const TempStyle = styled.div`
 `;
 
 const AddPartyForm = props => {
-  const userId = useSelector(state=>state.auth.user.userID);
-  const {partyActions: {addParty}} = useContext(ActionsContext);
+  console.log(props);
+  const userId = useSelector(state => state.auth.user.userID);
+  const party = useSelector(state => state.party.party);
+  const {partyActions: {addParty, fetchParty, editParty}} = useContext(
+      ActionsContext);
+  const [editMode, setEditMode] = useState(false);
   const [values, setValues] = useState({
     party_name: '',
     date: Date.now(),
     n_of_guests: 0,
     theme: '',
     budget: 0,
-    user_id: userId
-  })
+    user_id: userId,
+  });
 
-  const handleChange = e => setValues({...values, [e.target.name]: e.target.value});
+  useEffect(() => {
+    props.match && props.match.params && props.match.params.id &&
+    setEditMode(true);
+  }, []);
+
+  useEffect(() => {
+    props.match.params && props.match.params.id &&
+    fetchParty(props.match.params.id);
+  }, []);
+
+  useEffect(() => {
+    party && party.id && setValues(party);
+  }, [party]);
+
+  const handleChange = e => setValues(
+      {...values, [e.target.name]: e.target.value});
 
   const handleSubmit = e => {
     e.preventDefault();
-    addParty(values);
-    props.history.push('/dashboard')
-  }
+    editMode ? editParty(values) : addParty(values);
+    props.history.push('/dashboard');
+  };
 
   return (
       <TempStyle>
         <form onSubmit={handleSubmit}>
-          <TextField name='party_name' value={values.party_name} label='Name of Party' onChange={handleChange} />
-          <TextField name='n_of_guests' value={values.n_of_guests} label='Number of Guests' onChange={handleChange} />
-          <TextField name='theme' value={values.theme} label='Theme of the Party' onChange={handleChange} />
-          <TextField name='budget' value={values.budget} label='Budget for the Party' onChange={handleChange} />
-          <TextField name='date' type='date' value={values.date} label='Date of the Party' onChange={handleChange} />
+          <TextField name='party_name' value={values.party_name}
+                     label='Name of Party' onChange={handleChange}/>
+          <TextField name='n_of_guests' value={values.n_of_guests}
+                     label='Number of Guests' onChange={handleChange}/>
+          <TextField name='theme' value={values.theme}
+                     label='Theme of the Party' onChange={handleChange}/>
+          <TextField name='budget' value={values.budget}
+                     label='Budget for the Party' onChange={handleChange}/>
+          <TextField name='date' type='date' value={values.date}
+                     label='Date of the Party' onChange={handleChange}/>
           <Button color='secondary' type='submit'>Submit</Button>
         </form>
       </TempStyle>
