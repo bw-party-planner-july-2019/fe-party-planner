@@ -16,7 +16,7 @@ export const useShoppingActions = () => {
 	const fetchShoppingList = useCallback(
 		(party_id) => {
 			dispatch({ type: GET_SHOPPING_LIST_START });
-			axios.get(`/parties/${party_id}/shopping`).then((res) => console.log(res.data)).catch((err) => console.log(err));
+			axios().get(`/parties/${party_id}/shopping`).then((res) => console.log(res.data)).catch((err) => console.log(err));
 		},
 		[ dispatch ],
 	);
