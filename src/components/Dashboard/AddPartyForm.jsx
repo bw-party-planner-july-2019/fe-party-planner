@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
-import {ActionsContext} from '../contexts/ActionsContext';
+import {ActionsContext} from '../../contexts/ActionsContext';
 
 const TempStyle = styled.div`
   width: 100%;
