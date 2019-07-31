@@ -15,6 +15,7 @@ import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './auth/PrivateRoute';
 import Party from './Dashboard/Party';
+import {useShoppingActions} from '../store/shopping/useShoppingActions';
 
 const theme = createMuiTheme({
   typography: {},
@@ -41,10 +42,11 @@ const BackgroundImage = styled.div`
 const App = () => {
   const authActions = useAuthActions();
   const partyActions = usePartyActions();
+  const shoppingActions = useShoppingActions();
 
   return (
       <MuiThemeProvider theme={theme}>
-        <ActionsProvider value={{authActions, partyActions}}>
+        <ActionsProvider value={{authActions, partyActions, shoppingActions}}>
           <CssBaseline/>
           <BackgroundImage>
             <Navigation/>
