@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {withRouter} from 'react-router-dom'
 import Checkbox from '@material-ui/core/Checkbox';
 import {makeStyles} from '@material-ui/core/styles';
@@ -15,6 +15,7 @@ import { pink } from '@material-ui/core/colors';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from '@material-ui/core/styles';
 import {useSelector} from 'react-redux';
+import {ActionsContext} from '../../contexts/ActionsContext';
 
 const StyledCheckbox = withStyles({
     root: {
@@ -41,6 +42,7 @@ const useStyles = makeStyles(theme => ({
 function DisplayList(props) {
   console.log(props);
   const list = useSelector(state=>state.shopping);
+  const {shoppingActions: {fetchShoppingList}} = useContext(ActionsContext);
     // const list = [
     //     {id: 1, party_id: 1, item: 'balloons', purchased: false, price: 5},
     //     {id: 2, party_id: 1, item: 'drinks', purchased: false, price: 55},
@@ -54,7 +56,9 @@ function DisplayList(props) {
     // ];
     const classes = useStyles();
     const listOfItems = list.filter(item => item.party_id === list.party_id);
-    const [checked, setChecked] = React.useState([0]);
+    const [checked, setChecked] = useState([0]);
+
+    useEffect(()=> props.match.params && props.match.params.id && fetchShoppingList(props.match.params.id));
 
     const handleToggle = value => () => {
         const currentIndex = checked.indexOf(value);
