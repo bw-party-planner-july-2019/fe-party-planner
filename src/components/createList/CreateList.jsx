@@ -4,20 +4,49 @@ import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Items from "./Items";
 import AddItem from "./AddItem";
+import Button from "@material-ui/core/Button";
+import withStyles from "@material-ui/core/styles/withStyles";
+import {amber, blue, green, pink} from "@material-ui/core/colors";
+import ThemeProvider from "@material-ui/styles/ThemeProvider";
+import {useSelector} from "react-redux";
+import List from "../list/List";
+import Table from "@material-ui/core/Table";
 
 const useStyles = makeStyles(theme => ({
     card: {
         color: 'white',
         minWidth: 275,
-        width: 300,
-        backgroundColor: '#B33771',
+        width: 500,
+        backgroundColor: '#FD7272',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        borderRadius: '4px',
     },
     tableCell: {
         color: 'white',
-    }
+    },
 }));
 
-function CreateList() {
+const ColorButton = withStyles(theme => ({
+    root: {
+        color: theme.palette.getContrastText(pink[500]),
+        backgroundColor: theme.backgroundColor,
+        height: 50,
+        width: '100%',
+        '&:hover': {
+            backgroundColor: theme.background,
+        },
+    },
+}))(Button);
+
+const themeBtn = {
+    backgroundColor: '#FC427B',
+    background: '#fc2363',
+};
+
+function CreateList(props) {
     /*const list = [
         {id: 1, party_id: 1, item: 'balloons', purchased: false, price: 5},
         {id: 2, party_id: 1, item: 'drinks', purchased: false, price: 55},
@@ -33,23 +62,57 @@ function CreateList() {
     list.map(item =>
         listOfItems.push({["item"]: item.item, ["price"]: item.price,})
     );*/
-
-    const [items, setItems] = useState([]);
-
     const classes = useStyles();
 
-    const addItemToList = item =>{
-        setItems( [...items, item]);
+
+    const list = useSelector(state => state.shopping.list);
+
+
+    const [items, setItems] = useState([]);
+    const [status, setStatus] = useState(list.length > 0);
+
+    const addItemToList = item => {
+        setItems([...items, item]);
+        console.log("Updated list: ", items)
+    };
+    const deleteItemFromList = item => {
+        console.log("delete - ", item);
+        const localItems = [...items];
+        const indexOfItem = items.indexOf(item);
+        localItems.splice(indexOfItem, 1);
+        setItems(localItems);
         console.log("Updated list: ", items)
     };
 
-    return (
-        <Card className={classes.card}>
-            <Items items={items}/>
-            {console.log("items: ",items)}
-            <AddItem addItemToList={addItemToList} />
+    const changeStatus = status => {
+        setStatus(status);
+    };
 
-        </Card>
+
+
+    return (
+        <div className={classes.card}>
+
+            <Items status={status} deleteItemFromList={deleteItemFromList} items={items}/>
+
+
+            {console.log("status: ", status)}
+            {status === false && (
+                <AddItem addItemToList={addItemToList}/>
+            )}
+
+            {status === true && (
+                <ThemeProvider theme={themeBtn}>
+                    <ColorButton onClick={() => changeStatus(!status)}>Edit list</ColorButton>
+                </ThemeProvider>
+            )}
+            {status === false && (
+                <ThemeProvider theme={themeBtn}>
+                    <ColorButton onClick={() => changeStatus(!status)}>Submit</ColorButton>
+                </ThemeProvider>
+            )}
+
+        </div>
     );
 }
 

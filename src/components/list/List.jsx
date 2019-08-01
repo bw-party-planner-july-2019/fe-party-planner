@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
   card: {
     color: 'white',
     minWidth: 275,
-    width: 300,
+    width: 500,
+    paddingLeft: theme.spacing(1),
     backgroundColor: '#B33771',
   },
   whiteStyle: {
@@ -39,6 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 function DisplayList(props) {
   console.log(props);
+
   const shoppingList = useSelector(state => state.shopping.list);
   const todoList = useSelector(state => state.todos.list);
   const list = props.mode === 'shopping' ? shoppingList : todoList;
@@ -63,12 +65,14 @@ function DisplayList(props) {
     props.match.params.id && fetchShoppingList(props.match.params.id);
   }, []);
 
+
   useEffect(() => {
     if (props.mode !== 'shopping') props.match.params && props.match.params.id && fetchAllTodo(props.match.params.id);
   }, []);
 
   const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
+    console.log("currentIndex", currentIndex, "value ", value);
     const newChecked = [...checked];
 
     if (currentIndex === -1) {
@@ -81,26 +85,25 @@ function DisplayList(props) {
   };
 
   return (
-    <div>
-      {props.mode === 'shopping' && <h1>Shopping List</h1>}
-      {props.mode === 'todos' && <h1>Todo List</h1>}
-      <Card className={classes.card}>
-        <List className={classes.list}>
-          {console.log('checked items ', checked)}
-          {listOfItems.map(item => {
-            return (
-              <ListItem
-                key={item.id} role={undefined} dense button
-                onClick={handleToggle(item)}
-              >
-                <ListItemIcon>
-                  <FormControlLabel
-                    control={
-                      <StyledCheckbox
-                        edge='start'
-                        checked={checked.indexOf(item) !== -1}
-                        value={item.party_id}
-                        disableRipple
+      <div>
+        {props.mode === 'shopping' && <h1>Shopping List</h1>}
+        {props.mode === 'todos' && <h1>Todo List</h1>}
+        <Card className={classes.card}>
+          <List className={classes.list}>
+            {console.log('checked items ', checked)}
+            {listOfItems.map(item => {
+              return (
+                  <ListItem key={item.id} role={undefined} dense button
+                            onClick={() => handleToggle(item.item)}>
+                    <ListItemIcon>
+                      <FormControlLabel
+                          control={
+                            <StyledCheckbox
+                                edge="start"
+                                checked={checked.indexOf(item.item) !== -1}
+                                value={item.party_id}
+                                disableRipple
+
 
                         inputProps={{ 'aria-labelledby': `${item.item} ${item.id}` }}
                       />
