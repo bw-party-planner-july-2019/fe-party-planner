@@ -24,6 +24,7 @@ const AddListItem = (props) => {
     e.preventDefault();
     console.log(values);
     mode && addShoppingItem(values);
+    props.history.push(`/dashboard/view-party/${values.party_id}`)
   };
 
   return (
