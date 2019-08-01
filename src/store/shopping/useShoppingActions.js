@@ -31,7 +31,7 @@ export const useShoppingActions = () => {
   const fetchShoppingItem = useCallback(
     (partyId, listId) => {
       dispatch({ type: GET_SHOPPING_ITEM_START });
-      axios
+      axios()
         .get(`/parties/${partyId}/shopping/${listId}`)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
@@ -40,10 +40,10 @@ export const useShoppingActions = () => {
   );
 
   const addShoppingItem = useCallback(
-    (partyId, item) => {
+    (item) => {
       dispatch({ type: ADD_SHOPPING_ITEM_START });
-      axios
-        .post(`/parties/${partyId}/shopping`, item)
+      axios()
+        .post(`/parties/${item.party_id}/shopping`, item)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     },
@@ -53,7 +53,7 @@ export const useShoppingActions = () => {
   const editShoppingItem = useCallback(
     (updatedItem) => {
       dispatch({ type: EDIT_SHOPPING_ITEM_START });
-      axios
+      axios()
         .put(`/parties/${updatedItem.partyId}/shopping/${updatedItem.id}`,
           updatedItem)
         .then((res) => console.log(res.data))
@@ -65,7 +65,7 @@ export const useShoppingActions = () => {
   const deleteShoppingItem = useCallback(
     (partyId, listId) => {
       dispatch({ type: DELETE_PARTY_START });
-      axios
+      axios()
         .delete(`/parties/${partyId}/shopping/${listId}`)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
