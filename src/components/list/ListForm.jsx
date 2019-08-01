@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import list from './List';
+import TextField from '@material-ui/core/TextField';
+
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
@@ -10,6 +12,7 @@ const useStyles = makeStyles(theme => ({
   input: {
     display: 'none',
   },
+  
 }));
 
 export default function ContainedButtons(list) {
@@ -18,11 +21,15 @@ export default function ContainedButtons(list) {
   return (
     <div>
       <Button className={classes.button}>
-        Price
+        
       </Button>
-      <Button className={classes.button}>
-          Item
-      </Button>
+      <TextField
+        id="outlined-name"
+        label="Name"
+       
+        margin="normal"
+        variant="outlined"
+      />
       </div>
   );
 }
