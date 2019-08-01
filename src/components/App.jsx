@@ -14,9 +14,8 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './auth/PrivateRoute';
 import Party from './Dashboard/Party';
-import {useShoppingActions} from '../store/shopping/useShoppingActions';
 import CreateList from "./createList/Items";
-import ListForm from './list/ListForm
+import ListForm from './list/ListForm'
 import { useShoppingActions } from '../store/shopping/useShoppingActions';
 import AddListItem from './Dashboard/AddListItem';
 
