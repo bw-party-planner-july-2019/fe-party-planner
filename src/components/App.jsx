@@ -18,6 +18,7 @@ import CreateList from "./createList/Items";
 import ListForm from './list/ListForm'
 import { useShoppingActions } from '../store/shopping/useShoppingActions';
 import AddListItem from './Dashboard/AddListItem';
+import { useTodoActions } from '../store/todos/useTodoActions';
 
 const theme = createMuiTheme({
   typography: {},
@@ -44,10 +45,11 @@ const App = () => {
   const authActions = useAuthActions();
   const partyActions = usePartyActions();
   const shoppingActions = useShoppingActions();
+  const todoActions = useTodoActions();
 
   return (
     <MuiThemeProvider theme={theme}>
-      <ActionsProvider value={{ authActions, partyActions, shoppingActions }}>
+      <ActionsProvider value={{ authActions, partyActions, shoppingActions, todoActions }}>
         <CssBaseline/>
         <BackgroundImage>
           <Navigation/>
