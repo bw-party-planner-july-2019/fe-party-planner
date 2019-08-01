@@ -40,6 +40,7 @@ const useStyles = makeStyles(theme => ({
 function DisplayList(props) {
   console.log(props);
   const list = useSelector(state => state.shopping.list);
+
   const {shoppingActions: {fetchShoppingList}} = useContext(ActionsContext);
   // const list = [
   //     {id: 1, party_id: 1, item: 'balloons', purchased: false, price: 5},
