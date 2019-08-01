@@ -1,13 +1,13 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { ActionsContext } from '../../contexts/ActionsContext';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
 
 const AddListItem = (props) => {
   // Shop = True, Todo = False
   const [mode, setMode] = useState(false);
   const [values, setValues] = useState({});
-  const { shoppingActions: { addShoppingItem } } = useContext(ActionsContext);
+  const { shoppingActions: { addShoppingItem }, todoActions: { addTodoItem } } = useContext(ActionsContext);
   useEffect(() => {
     if (props.mode === 'shopping') {
       setMode(true);
@@ -23,8 +23,8 @@ const AddListItem = (props) => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(values);
-    mode && addShoppingItem(values);
-    props.history.push(`/dashboard/view-party/${values.party_id}`)
+    mode ? addShoppingItem(values) : addTodoItem(values);
+    props.history.push(`/dashboard/view-party/${values.party_id}`);
   };
 
   return (

@@ -7,6 +7,6 @@ export const useMoodActions = () => {
   const dispatch = useDispatch();
   const fetchMood = useCallback(() => {
     dispatch({ type: FETCH_MOOD_START });
-    axios.get('/').then(res => console.log(res.data)).catch(err => console.log(err));
+    axios().get('/').then(res => console.log(res.data)).catch(err => console.log(err));
   }, [dispatch]);
 };

@@ -29,10 +29,10 @@ export const useTodoActions = () => {
   );
 
   const addTodoItem = useCallback(
-    (partyId, item) => {
+    (item) => {
       dispatch({ type: ADD_TODO_ITEM_START });
       axios()
-        .post(`/parties/${partyId}/todo`, item)
+        .post(`/parties/${item.party_id}/todo`, item)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     },
