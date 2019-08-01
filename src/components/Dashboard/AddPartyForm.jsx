@@ -16,7 +16,7 @@ const TempStyle = styled.div`
 `;
 // const useStyles = makeStyles(theme => ({
 //   textField: {
-//     textColor: '#FC427B',
+//     color: '#FC427B',
 //   }
 // }));
 
