@@ -131,6 +131,7 @@ function Party(props) {
             </CardActions>
           </Card>
         </Grid>
+        {isSingle && <CreateList />}
         {isSingle && <List mode={`shopping`}/>}
         {isSingle && <List mode={`todos`}/>}
         {isSingle && <Button component={RouterLink} to='/dashboard' color="primary">Back to Dashboard</Button>}

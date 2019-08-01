@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
   card: {
     color: 'white',
     minWidth: 275,
-    width: 300,
+    width: 500,
+    paddingLeft: theme.spacing(1),
     backgroundColor: '#B33771',
   },
   whiteStyle: {
@@ -42,28 +43,29 @@ function DisplayList(props) {
   const list = useSelector(state => state.shopping.list);
 
   const {shoppingActions: {fetchShoppingList}} = useContext(ActionsContext);
-  // const list = [
-  //     {id: 1, party_id: 1, item: 'balloons', purchased: false, price: 5},
-  //     {id: 2, party_id: 1, item: 'drinks', purchased: false, price: 55},
-  //     {id: 3, party_id: 1, item: 'cake', purchased: false, price: 20},
-  //     {id: 4, party_id: 2, item: 'juice', purchased: false, price: 5},
-  //     {id: 5, party_id: 2, item: 'cups', purchased: false, price: 10},
-  //     {id: 6, party_id: 2, item: 'cookies', purchased: false, price: 15},
-  //     {id: 7, party_id: 3, item: 'decorations', purchased: false, price: 25},
-  //     {id: 8, party_id: 3, item: 'candy', purchased: false, price: 20},
-  //     {id: 9, party_id: 3, item: 'music', purchased: false, price: 10},
-  // ];
+ /* const list = [
+      {id: 1, party_id: 1, item: 'balloons', purchased: false, price: 5},
+      {id: 2, party_id: 1, item: 'drinks', purchased: false, price: 55},
+      {id: 3, party_id: 1, item: 'cake', purchased: false, price: 20},
+      {id: 4, party_id: 2, item: 'juice', purchased: false, price: 5},
+      {id: 5, party_id: 2, item: 'cups', purchased: false, price: 10},
+      {id: 6, party_id: 2, item: 'cookies', purchased: false, price: 15},
+      {id: 7, party_id: 3, item: 'decorations', purchased: false, price: 25},
+      {id: 8, party_id: 3, item: 'candy', purchased: false, price: 20},
+      {id: 9, party_id: 3, item: 'music', purchased: false, price: 10},
+  ];*/
   const classes = useStyles();
   const listOfItems = list.filter(item => item.party_id.toString() === props.match.params.id );
-  const [checked, setChecked] = useState([0]);
+  const [checked, setChecked] = useState([]);
   console.log(listOfItems);
   useEffect(() => {
     if (props.mode === 'shopping') props.match.params &&
     props.match.params.id && fetchShoppingList(props.match.params.id);
   }, []);
 
-  const handleToggle = value => () => {
+  const handleToggle = value => {
     const currentIndex = checked.indexOf(value);
+    console.log("currentIndex", currentIndex, "value ", value);
     const newChecked = [...checked];
 
     if (currentIndex === -1) {
@@ -85,13 +87,13 @@ function DisplayList(props) {
             {listOfItems.map(item => {
               return (
                   <ListItem key={item.id} role={undefined} dense button
-                            onClick={handleToggle(item)}>
+                            onClick={() => handleToggle(item.item)}>
                     <ListItemIcon>
                       <FormControlLabel
                           control={
                             <StyledCheckbox
                                 edge="start"
-                                checked={checked.indexOf(item) !== -1}
+                                checked={checked.indexOf(item.item) !== -1}
                                 value={item.party_id}
                                 disableRipple
 
