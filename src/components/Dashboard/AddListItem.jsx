@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { ActionsContext } from '../../contexts/ActionsContext';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button'
 
 const AddListItem = (props) => {
   // Shop = True, Todo = False
   const [mode, setMode] = useState(false);
   const [values, setValues] = useState({});
-  const { shoppingActions: { addShoppingList } } = useContext(ActionsContext);
+  const { shoppingActions: { addShoppingItem } } = useContext(ActionsContext);
   useEffect(() => {
     if (props.mode === 'shopping') {
       setMode(true);
@@ -21,15 +22,26 @@ const AddListItem = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    mode && addShoppingList(values);
+    console.log(values);
+    mode && addShoppingItem(values);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField />
-      <TextField />
-
-    </form>
+    <Fragment>
+      <h1>Hello World</h1>
+      <p>Testing CRUD Operations</p>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          name='item' value={values.item} onChange={handleChange} variant='filled' margin='normal'
+          label='Item'
+        />
+        {mode && <TextField
+          name='price' value={values.price} onChange={handleChange} variant='filled' margin='normal'
+          label='Price'
+        />}
+        <Button type='submit'>Submit</Button>
+      </form>
+    </Fragment>
   );
 };
 
