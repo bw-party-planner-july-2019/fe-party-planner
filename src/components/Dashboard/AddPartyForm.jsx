@@ -14,11 +14,7 @@ const TempStyle = styled.div`
   flex-direction: column;
   
 `;
-// const useStyles = makeStyles(theme => ({
-//   textField: {
-//     textColor: '#FC427B',
-//   }
-// }));
+
 
 const AddPartyForm = props => {
   console.log(props);
