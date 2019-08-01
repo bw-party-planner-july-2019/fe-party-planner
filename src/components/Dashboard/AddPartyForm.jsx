@@ -50,6 +50,14 @@ const AddPartyForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     editMode ? editParty(values) : addParty(values);
+    setValues({
+      party_name: '',
+      date: Date.now(),
+      n_of_guests: 0,
+      theme: '',
+      budget: 0,
+      user_id: userId,
+    });
     props.history.push('/dashboard');
   };
 

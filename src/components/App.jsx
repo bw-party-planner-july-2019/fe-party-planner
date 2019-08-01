@@ -1,27 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import Login from './Login';
-import {useAuthActions} from '../store/auth/useAuthActions';
-import {ActionsProvider} from '../contexts/ActionsContext';
-import {Route, Switch} from 'react-router-dom';
+import { useAuthActions } from '../store/auth/useAuthActions';
+import { ActionsProvider } from '../contexts/ActionsContext';
+import { Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import AddPartyForm from './Dashboard/AddPartyForm';
-import List from './list/List';
-import {usePartyActions} from '../store/party/usePartyActions';
+import { usePartyActions } from '../store/party/usePartyActions';
 import Navigation from './navigation/Navigation';
 import party from '../imgs/party.jpg';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './auth/PrivateRoute';
 import Party from './Dashboard/Party';
-import {useShoppingActions} from '../store/shopping/useShoppingActions';
+import { useShoppingActions } from '../store/shopping/useShoppingActions';
+import AddListItem from './Dashboard/AddListItem';
 
 const theme = createMuiTheme({
   typography: {},
   palette: {
-    primary: {main: '#B33771'},
-    secondary: {main: '#FEA47F'},
+    primary: { main: '#B33771' },
+    secondary: { main: '#FEA47F' },
   },
 });
 
@@ -38,32 +38,39 @@ const BackgroundImage = styled.div`
 `;
 
 
-
 const App = () => {
   const authActions = useAuthActions();
   const partyActions = usePartyActions();
   const shoppingActions = useShoppingActions();
 
   return (
-      <MuiThemeProvider theme={theme}>
-        <ActionsProvider value={{authActions, partyActions, shoppingActions}}>
-          <CssBaseline/>
-          <BackgroundImage>
-            <Navigation/>
-            <Container fluid>
-              <Switch>
-                <PrivateRoute path='/dashboard/view-party/:id' component={Party} />
-                <PrivateRoute path='/dashboard/edit-party/:id' component={AddPartyForm} />
-                <PrivateRoute path='/dashboard/add-party'
-                              component={AddPartyForm}/>
-                <PrivateRoute path='/dashboard' component={Dashboard}/>
-                <Route path='/register' render={props => <Login {...props} />}/>
-                <Route path='/' render={props => <Login {...props} />}/>
-              </Switch>
-            </Container>
-          </BackgroundImage>
-        </ActionsProvider>
-      </MuiThemeProvider>
+    <MuiThemeProvider theme={theme}>
+      <ActionsProvider value={{ authActions, partyActions, shoppingActions }}>
+        <CssBaseline/>
+        <BackgroundImage>
+          <Navigation/>
+          <Container fluid>
+            <Switch>
+              <PrivateRoute path='/dashboard/view-party/:id/edit-todo-item/:listId' mode="todo"
+                            component={AddListItem}/>
+              <PrivateRoute path='/dashboard/view-party/:id/add-todo-item' mode="todo"
+                            component={AddListItem}/>
+              <PrivateRoute path='/dashboard/view-party/:id/edit-shop-item/:listId' mode="shopping"
+                            component={AddListItem}/>
+              <PrivateRoute path='/dashboard/view-party/:id/add-shop-item' mode="shopping"
+                            component={AddListItem}/>
+              <PrivateRoute path='/dashboard/view-party/:id' component={Party}/>
+              <PrivateRoute path='/dashboard/edit-party/:id' component={AddPartyForm}/>
+              <PrivateRoute path='/dashboard/add-party'
+                            component={AddPartyForm}/>
+              <PrivateRoute path='/dashboard' component={Dashboard}/>
+              <Route path='/register' render={props => <Login {...props} />}/>
+              <Route path='/' render={props => <Login {...props} />}/>
+            </Switch>
+          </Container>
+        </BackgroundImage>
+      </ActionsProvider>
+    </MuiThemeProvider>
   );
 };
 
