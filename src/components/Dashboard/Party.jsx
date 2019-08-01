@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, Fragment } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '../list/List';
@@ -124,7 +124,8 @@ function Party(props) {
                   </DialogContentText>
                   <DialogActions>
                     <Button onClick={() => setOpen(false)} color="primary">Cancel</Button>
-                    <Button onClick={() => handleConfirm(values.id)} color="primary" autoFocus>Confirm</Button>
+                    <Button onClick={() => handleConfirm(values.id)} color="primary"
+                            autoFocus>Confirm</Button>
                   </DialogActions>
                 </DialogContent>
               </Dialog>
@@ -134,10 +135,16 @@ function Party(props) {
         {isSingle && <CreateList />}
         {isSingle && <List mode={`shopping`}/>}
         {isSingle && <List mode={`todos`}/>}
-        {isSingle && <Button component={RouterLink} to='/dashboard' color="primary">Back to Dashboard</Button>}
+        {isSingle &&
+        <Button component={RouterLink} to='/dashboard' color="primary">Back to Dashboard</Button>}
+        {isSingle && userId === values.user_id &&
+        <Button component={RouterLink} to={`/dashboard/view-party/${values.id}/add-shop-item`}>Add A Shop
+          Item</Button>}
+        {isSingle && userId === values.user_id &&
+        <Button component={RouterLink} to={`/dashboard/view-party/${values.id}/add-todo-item`}>Add A Todo
+          Item</Button>}
       </Fragment>
     );
   }
 }
-
 export default withRouter(Party);

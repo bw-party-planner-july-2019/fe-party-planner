@@ -29,8 +29,10 @@ export const usePartyActions = () => {
         .then((res) => {
           dispatch({ type: GET_ALL_PARTIES_SUCCESS, payload: res.data });
         })
-        .catch((err) => dispatch(
-          { type: GET_ALL_PARTIES_FAIL, payload: err.response.data }));
+        .catch((err) => {
+          if (err.response.status === 401) localStorage.removeItem('token');
+          dispatch({ type: GET_ALL_PARTIES_FAIL, payload: err.response.data });
+        });
     },
     [dispatch],
   );

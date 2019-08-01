@@ -5,7 +5,8 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
-    color: '#fff',
+    color: 'green'
+
   },
   input: {
     display: 'none',
@@ -17,10 +18,10 @@ export default function ContainedButtons(list) {
 
   return (
     <div>
-      <Button className={classes.button}>
+      <Button variant="contained" className={classes.button}>
         Price
       </Button>
-      <Button className={classes.button}>
+      <Button variant="contained" className={classes.button}>
           Item
       </Button>
       </div>

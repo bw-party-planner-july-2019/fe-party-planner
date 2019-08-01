@@ -15,6 +15,7 @@ import {
   UPDATE_PARTY_START,
   UPDATE_PARTY_SUCCESS,
 } from './types';
+import { LOGOUT } from '../auth/types';
 
 const initialState = {
   parties: [],
@@ -74,6 +75,8 @@ export const eventsReducer = (state = initialState, { type, payload }) => {
       };
     case DELETE_PARTY_FAIL:
       return { ...state, isLoading: false, errors: payload, party: {} };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }
