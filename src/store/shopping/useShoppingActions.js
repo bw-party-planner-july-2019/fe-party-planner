@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
-  ADD_SHOPPING_ITEM_START,
+  ADD_SHOPPING_ITEM_START, DELETE_SHOPPING_ITEM_START,
   EDIT_SHOPPING_ITEM_START,
   GET_SHOPPING_ITEM_START,
   GET_SHOPPING_LIST_FAIL,
@@ -64,7 +64,7 @@ export const useShoppingActions = () => {
 
   const deleteShoppingItem = useCallback(
     (partyId, listId) => {
-      dispatch({ type: DELETE_PARTY_START });
+      dispatch({ type: DELETE_SHOPPING_ITEM_START });
       axios()
         .delete(`/parties/${partyId}/shopping/${listId}`)
         .then((res) => console.log(res.data))
