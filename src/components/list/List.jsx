@@ -23,7 +23,7 @@ const StyledCheckbox = withStyles({
     },
   },
   checked: {},
-})(props => <Checkbox color="default" {...props} />);
+})(props => <Checkbox color='default' {...props} />);
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -39,8 +39,10 @@ const useStyles = makeStyles(theme => ({
 
 function DisplayList(props) {
   console.log(props);
-  const list = useSelector(state => state.shopping.list);
-  const { shoppingActions: { fetchShoppingList } } = useContext(ActionsContext);
+  const shoppingList = useSelector(state => state.shopping.list);
+  const todoList = useSelector(state => state.todos.list);
+  const list = props.mode === 'shopping' ? shoppingList : todoList;
+  const { shoppingActions: { fetchShoppingList }, todoActions: { fetchAllTodo } } = useContext(ActionsContext);
   // const list = [
   //     {id: 1, party_id: 1, item: 'balloons', purchased: false, price: 5},
   //     {id: 2, party_id: 1, item: 'drinks', purchased: false, price: 55},
@@ -59,6 +61,10 @@ function DisplayList(props) {
   useEffect(() => {
     if (props.mode === 'shopping') props.match.params &&
     props.match.params.id && fetchShoppingList(props.match.params.id);
+  }, []);
+
+  useEffect(() => {
+    if (props.mode !== 'shopping') props.match.params && props.match.params.id && fetchAllTodo(props.match.params.id);
   }, []);
 
   const handleToggle = value => () => {
@@ -83,25 +89,30 @@ function DisplayList(props) {
           {console.log('checked items ', checked)}
           {listOfItems.map(item => {
             return (
-              <ListItem key={item.id} role={undefined} dense button
-                        onClick={handleToggle(item)}>
+              <ListItem
+                key={item.id} role={undefined} dense button
+                onClick={handleToggle(item)}
+              >
                 <ListItemIcon>
                   <FormControlLabel
                     control={
                       <StyledCheckbox
-                        edge="start"
+                        edge='start'
                         checked={checked.indexOf(item) !== -1}
                         value={item.party_id}
                         disableRipple
 
                         inputProps={{ 'aria-labelledby': `${item.item} ${item.id}` }}
                       />
-                    }/>
+                    }
+                  />
                 </ListItemIcon>
-                <ListItemText id={`${item.item} ${item.id}`}
-                              primary={item.item}/>
+                <ListItemText
+                  id={`${item.item} ${item.id}`}
+                  primary={item.item}
+                />
                 <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="comments">
+                  <IconButton edge='end' aria-label='comments'>
                     <EditIcon className={classes.whiteStyle}/>
                   </IconButton>
                 </ListItemSecondaryAction>
