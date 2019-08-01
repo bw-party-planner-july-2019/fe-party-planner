@@ -4,15 +4,21 @@ import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { ActionsContext } from '../../contexts/ActionsContext';
-
+import { makeStyles } from '@material-ui/core/styles';
 const TempStyle = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column
+  flex-direction: column;
+  
 `;
+// const useStyles = makeStyles(theme => ({
+//   textField: {
+//     textColor: '#FC427B',
+//   }
+// }));
 
 const AddPartyForm = props => {
   console.log(props);

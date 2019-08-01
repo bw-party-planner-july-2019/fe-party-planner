@@ -16,7 +16,7 @@ import PrivateRoute from './auth/PrivateRoute';
 import Party from './Dashboard/Party';
 import {useShoppingActions} from '../store/shopping/useShoppingActions';
 import CreateList from "./createList/Items";
-import ListForm from './list/ListForm';
+
 const theme = createMuiTheme({
   typography: {},
   palette: {
@@ -58,7 +58,7 @@ const App = () => {
                               component={AddPartyForm}/>
                 <PrivateRoute path='/dashboard' component={Dashboard}/>
                 <Route path='/register' render={props => <Login {...props} />}/>
-                <Route path='/list' component={ListForm}/>
+                
                 <Route path='/' render={props => <Login {...props} />}/>
               </Switch>
             </Container>
