@@ -168,33 +168,33 @@ function Party(props) {
               </Dialog>
             </CardActions>
           </Card>
-        </Grid>
-        {isSingle && <CreateList/>}
-        {isSingle && <List mode={`shopping`}/>}
-        {isSingle && <List mode={`todos`}/>}
-        {isSingle && (
-          <Button component={RouterLink} to='/dashboard' color='primary'>
-            Back to Dashboard
-          </Button>
-        )}
-        {isSingle &&
-        userId === values.user_id && (
-          <Button
-            component={RouterLink}
-            to={`/dashboard/view-party/${values.id}/add-shop-item`}
-          >
-            Add A Shop Item
-          </Button>
-        )}
-        {isSingle &&
-        userId === values.user_id && (
-          <Button
-            component={RouterLink}
-            to={`/dashboard/view-party/${values.id}/add-todo-item`}
-          >
-            Add A Todo Item
-          </Button>
-        )}
+					{isSingle && <CreateList/>}
+				</Grid>
+        {/*{isSingle && <List mode={`shopping`}/>}*/}
+        {/*{isSingle && <List mode={`todos`}/>}*/}
+        {/*{isSingle && (*/}
+        {/*  <Button component={RouterLink} to='/dashboard' color='primary'>*/}
+        {/*    Back to Dashboard*/}
+        {/*  </Button>*/}
+        {/*)}*/}
+        {/*{isSingle &&*/}
+        {/*userId === values.user_id && (*/}
+        {/*  <Button*/}
+        {/*    component={RouterLink}*/}
+        {/*    to={`/dashboard/view-party/${values.id}/add-shop-item`}*/}
+        {/*  >*/}
+        {/*    Add A Shop Item*/}
+        {/*  </Button>*/}
+        {/*)}*/}
+        {/*{isSingle &&*/}
+        {/*userId === values.user_id && (*/}
+        {/*  <Button*/}
+        {/*    component={RouterLink}*/}
+        {/*    to={`/dashboard/view-party/${values.id}/add-todo-item`}*/}
+        {/*  >*/}
+        {/*    Add A Todo Item*/}
+        {/*  </Button>*/}
+        {/*)}*/}
       </Fragment>
     );
   }
