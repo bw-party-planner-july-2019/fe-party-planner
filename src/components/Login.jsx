@@ -17,12 +17,15 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: '90vh',
+    height: '100vh',
     flexDirection: 'column'
   },
   formShow: {
     backgroundColor: '#B33771',
-  }
+  },
+  title: {
+    paddingBottom: theme.spacing(2)
+  },
 }));
 
 const CoolForm = styled.form`
@@ -87,8 +90,7 @@ function Login(props) {
 
   return (
       <div className={classes.container}>
-        {console.log(user, 'userafter')}
-        <Typography component='h1'>{isRegister ? 'Register' : 'Login'}</Typography>
+        <Typography variant='h4' color='secondary' className={classes.title}>{`Welcome to Party Planner.  Please ${isRegister ? 'Register' : 'Login'} to continue`}</Typography>
         <CoolForm onSubmit={event => handleSubmit(event)} className={classes.formShow}>
           <TextField id='username' name='username' value={user.username}
                      onChange={handleChange} label='Username' margin='normal'
@@ -116,8 +118,8 @@ function Login(props) {
           {/*</label>*/}
           <Button color='secondary' type='submit'>{isRegister ? 'Register' : 'Login'}</Button>
           {/*<CoolButton>{isRegister ? 'Register' : 'Login'}</CoolButton>*/}
-          {!isRegister && <Typography>Not a Member?  Click <Link component={RouterLink} to='/register'>Here</Link> to Register</Typography>}
-          {isRegister && <Typography>Already a Member?  Click <Link component={RouterLink} to='/'>Here</Link> to Login</Typography>}
+          {!isRegister && <Typography>Not a Member?  Click <Link component={RouterLink} to='/register' color='secondary'>Here</Link> to Register</Typography>}
+          {isRegister && <Typography>Already a Member?  Click <Link component={RouterLink} to='/' color='secondary'>Here</Link> to Login</Typography>}
         </CoolForm>
       </div>
   );
