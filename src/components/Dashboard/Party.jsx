@@ -18,7 +18,7 @@ import { ActionsContext } from '../../contexts/ActionsContext';
 import CreateList from '../createList/CreateList';
 import styled from 'styled-components';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>({
   card: {
     color: '#fff',
     background: '#B33771',
@@ -41,9 +41,10 @@ const useStyles = makeStyles({
     height: '100vh',
     display: 'flex',
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'flex-start',
+    marginTop: theme.spacing(8),
   }
-});
+}));
 
 function Party(props) {
   const userId = useSelector(state => state.auth.user.userID);
@@ -165,7 +166,7 @@ function Party(props) {
                 color='primary'
                 autoFocus
               >
-                Confirm
+                Delete
               </Button>
             </DialogActions>
           </DialogContent>
@@ -180,7 +181,7 @@ function Party(props) {
     return (
       <div className={classes.single}>
         {children}
-        {isSingle && <CreateList/>}
+        {isSingle && userId === values.user_id && <CreateList/>}
       </div>
     )
   } else {

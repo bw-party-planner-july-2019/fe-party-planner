@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   title: {
     marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(2),
     textAlign: 'center',
   },
 }));
@@ -19,7 +20,7 @@ const CardContainer = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const DashboardContainer = styled.div`
@@ -28,13 +29,14 @@ const DashboardContainer = styled.div`
 `;
 
 const Dashboard = () => {
+  const username = useSelector(state=>state.auth.user.username);
   const parties = useSelector(state => state.party.parties);
   const { partyActions: { fetchParties } } = useContext(ActionsContext);
   const classes = useStyles();
   useEffect(() => fetchParties(), []);
   return (
     <DashboardContainer>
-      <Typography className={classes.title} variant='h1' color='secondary'>Time for a party</Typography>
+      <Typography className={classes.title} variant='h2' component="h1" color='secondary'>{`Time for a party ${username.toUpperCase()}!`}</Typography>
       <CardContainer>
         <Grid container spacing={2}>
           {parties.map((item, i) => <Party item={item} key={i}/>)}
