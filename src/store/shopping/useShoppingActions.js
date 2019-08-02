@@ -41,11 +41,15 @@ export const useShoppingActions = () => {
 
   const addShoppingItem = useCallback(
     (item) => {
+      console.log(item);
       dispatch({ type: ADD_SHOPPING_ITEM_START });
       axios()
         .post(`/parties/${item.party_id}/shopping`, item)
         .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
+        .catch((err) =>{
+          fetchShoppingList(item.party_id);
+          console.log(err.response)
+        });
     },
     [dispatch],
   );
@@ -63,11 +67,14 @@ export const useShoppingActions = () => {
   );
 
   const deleteShoppingItem = useCallback(
-    (partyId, listId) => {
+    (item) => {
       dispatch({ type: DELETE_SHOPPING_ITEM_START });
       axios()
-        .delete(`/parties/${partyId}/shopping/${listId}`)
-        .then((res) => console.log(res.data))
+        .delete(`/parties/${item.party_id}/shopping/${item.id}`)
+        .then((res) => {
+          fetchShoppingList(item.party_id);
+          console.log(res.data)
+        })
         .catch((err) => console.log(err));
     },
     [dispatch],
