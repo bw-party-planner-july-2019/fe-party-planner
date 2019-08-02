@@ -77,7 +77,7 @@ function CreateList(props) {
 
   const addItemToList = item => {
     addShoppingItem(item);
-    fetchShoppingList(item.party_id);
+    // fetchShoppingList(item.party_id);
     // setItems([...items, item]);
     console.log('Updated list: ', items);
   };
@@ -113,7 +113,7 @@ function CreateList(props) {
       )}
       {status === false && (
         <ThemeProvider theme={themeBtn}>
-          <ColorButton onClick={() => changeStatus(!status)}>Submit</ColorButton>
+          <ColorButton onClick={() => changeStatus(!status)}>Close List</ColorButton>
         </ThemeProvider>
       )}
 
