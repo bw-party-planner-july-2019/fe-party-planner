@@ -7,12 +7,13 @@ import { blue, pink, yellow } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { ActionsContext } from '../../contexts/ActionsContext';
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
   table: {
     color: 'white',
     minWidth: 275,
-    width: 500,
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -26,6 +27,7 @@ const ColorButton = withStyles(theme => ({
     color: theme.palette.getContrastText(blue[500]),
     backgroundColor: '#FEA47F',
     height: 50,
+    marginTop: theme.spacing(1),
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     '&:hover': {
@@ -81,30 +83,34 @@ function AddItem(props) {
 
     <div className={classes.table}>
       <form onSubmit={saveItem}>
-        <ColorInput
-          color={'primary'}
-          name='item'
-          value={item.item}
-          placeholder='Item'
-          onChange={handleChange}
-          margin='normal'
-          variant='outlined'
-        />
-        <ColorInput
-          name='price'
-          placeholder='Price'
-          onChange={handleChange}
-          value={item.price}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin='normal'
-          variant='outlined'
-        />
+        <Grid container spacing={1}  alignItems={"center"}>
+          <Grid item xs={4}><ColorInput
+              color={'primary'}
+              name='item'
+              value={item.item}
+              placeholder='Item'
+              onChange={handleChange}
+              margin='normal'
+              variant='outlined'
+          /></Grid>
+          <Grid item xs={4}><ColorInput
+              name='price'
+              placeholder='Price'
+              onChange={handleChange}
+              value={item.price}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin='normal'
+              variant='outlined'
+          /></Grid>
+          <Grid item xs={4}><ColorButton variant='contained' color='primary' type='submit'>
+            <AddIcon/>
+          </ColorButton></Grid>
+        </Grid>
 
-        <ColorButton variant='contained' color='primary' type='submit'>
-          <AddIcon/>
-        </ColorButton>
+
+
       </form>
     </div>
 

@@ -39,12 +39,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function DisplayList(props) {
-  console.log(props);
-
-  const shoppingList = useSelector(state => state.shopping.list);
-  const todoList = useSelector(state => state.todos.list);
-  const list = props.mode === 'shopping' ? shoppingList : todoList;
-  const { shoppingActions: { fetchShoppingList }, todoActions: { fetchAllTodo } } = useContext(ActionsContext);
+  // console.log(props);
+  //
+  // const shoppingList = useSelector(state => state.shopping.list);
+  // const todoList = useSelector(state => state.todos.list);
+  // const list = props.mode === 'shopping' ? shoppingList : todoList;
+  // const { shoppingActions: { fetchShoppingList }, todoActions: { fetchAllTodo } } = useContext(ActionsContext);
   // const list = [
   //     {id: 1, party_id: 1, item: 'balloons', purchased: false, price: 5},
   //     {id: 2, party_id: 1, item: 'drinks', purchased: false, price: 55},
@@ -57,24 +57,24 @@ function DisplayList(props) {
   //     {id: 9, party_id: 3, item: 'music', purchased: false, price: 10},
   // ];
   const classes = useStyles();
-  const listOfItems = list.filter(item => item.party_id.toString() === props.match.params.id);
+  // const listOfItems = list.filter(item => item.party_id.toString() === props.match.params.id);
   const [checked, setChecked] = useState([0]);
-  console.log(listOfItems);
-  useEffect(() => {
-    if (props.mode === 'shopping') props.match.params &&
-    props.match.params.id && fetchShoppingList(props.match.params.id);
-  }, []);
+  // console.log(listOfItems);
+  // useEffect(() => {
+  //   if (props.mode === 'shopping') props.match.params &&
+  //   props.match.params.id && fetchShoppingList(props.match.params.id);
+  // }, []);
 
+  //
+  // useEffect(() => {
+  //   if (props.mode !== 'shopping') props.match.params && props.match.params.id && fetchAllTodo(props.match.params.id);
+  // }, []);
 
-  useEffect(() => {
-    if (props.mode !== 'shopping') props.match.params && props.match.params.id && fetchAllTodo(props.match.params.id);
-  }, []);
-
-  const handleToggle = value => () => {
+  const handleToggle = value => {
     const currentIndex = checked.indexOf(value);
     console.log("currentIndex", currentIndex, "value ", value);
     const newChecked = [...checked];
-
+    {console.log('value  ', value)}
     if (currentIndex === -1) {
       newChecked.push(value);
     } else {
@@ -91,7 +91,7 @@ function DisplayList(props) {
         <Card className={classes.card}>
           <List className={classes.list}>
             {console.log('checked items ', checked)}
-            {listOfItems.map(item => {
+            {props.list.map(item => {
               return (
                   <ListItem key={item.id} role={undefined} dense button
                             onClick={() => handleToggle(item.item)}>

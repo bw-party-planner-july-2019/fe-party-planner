@@ -47,9 +47,9 @@ function Items(props) {
   return (
 
     <Table>
-      {props.status === true && (<List/>)}
+      {props.status === true && (<List list={items}/> )}
 
-      {props.status === false && items.length === 0 && (<EmptyList/>)}
+      {items.length === 0 && (<EmptyList/>)}
 
       {props.status === false && items.length > 0 && (
         <TableHead className={classes.tableHead}>
