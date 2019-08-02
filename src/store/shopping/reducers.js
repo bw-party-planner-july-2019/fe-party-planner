@@ -3,6 +3,7 @@ import {
   GET_SHOPPING_LIST_START,
   GET_SHOPPING_LIST_SUCCESS,
 } from './types';
+import { LOGOUT } from '../auth/types';
 
 const initialState = {
   list: [],
@@ -18,6 +19,8 @@ export const shoppingReducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoading: false, list: payload, errors: null };
     case GET_SHOPPING_LIST_FAIL:
       return { ...state, isLoading: false, list: [], errors: payload };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }
